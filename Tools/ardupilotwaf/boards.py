@@ -1570,6 +1570,25 @@ class linux(Board):
         # get name of class
         return self.__class__.__name__
 
+# rpi5chen
+class rpi5chen(linux):
+    def init(self, *args, **kwargs):
+        super(rpi5chen, self).init(*args, **kwargs)
+        self.name = 'rpi5chen'
+        
+def configure_env(self, env):
+    # 先调用父类的配置方法，这样保留 linux 父类的默认设置
+    super(rpi5chen, self).configure_env(env)
+
+    # 设置交叉编译器相关环境变量
+    env['CROSS_COMPILE'] = 'aarch64-linux-gnu-'
+    env['CC'] = 'aarch64-linux-gnu-gcc'
+    env['CXX'] = 'aarch64-linux-gnu-g++'
+
+    # 其他需要额外覆盖或自定义的环境变量，也可以在这里添加
+
+
+
 class SITL_static(sitl):
     def configure_env(self, cfg, env):
         super(SITL_static, self).configure_env(cfg, env)
