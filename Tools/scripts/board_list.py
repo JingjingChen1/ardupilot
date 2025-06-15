@@ -74,7 +74,6 @@ class BoardList(object):
         self.boards = [
             Board("SITL_x86_64_linux_gnu"),
             Board("SITL_arm_linux_gnueabihf"),
-            Board("rpi5chen"),  # by chenjingjing
         ]
 
         for hwdef_dir in self.hwdef_dir:

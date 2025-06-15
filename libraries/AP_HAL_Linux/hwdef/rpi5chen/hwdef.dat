@@ -1,4 +1,5 @@
 # made by chenjingjing for rpi5
+env TOOLCHAIN aarch64-linux-gnu
 
 # IMUs:
 IMU Invensense SPI:mpu9250 ROTATION_NONE

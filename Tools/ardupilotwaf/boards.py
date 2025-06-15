@@ -1468,7 +1468,7 @@ class linux(Board):
             pass  # set in __init__
         else:
             # default tool-chain for Linux-based boards:
-            self.toolchain = 'aarch64-linux-gnu'
+            self.toolchain = 'arm-linux-gnueabihf'
 
         # we should be able to do better here:
         if cfg.env.WITH_CAN:
@@ -1569,20 +1569,6 @@ class linux(Board):
     def get_name(self):
         # get name of class
         return self.__class__.__name__
-
-# rpi5chen
-class rpi5chen(linux):
-    def init(self, *args, **kwargs):
-        super(rpi5chen, self).init(*args, **kwargs)
-        self.name = 'rpi5chen'
-        self.toolchain = 'aarch64-linux-gnu'
-        
-def configure_env(self, env):
-    # linux 父类的默认设置
-    super(rpi5chen, self).configure_env(env)
-
-    # 其他需要额外覆盖或自定义的环境变量，也可以在这里添加
-
 
 
 class SITL_static(sitl):
