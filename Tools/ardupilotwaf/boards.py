@@ -1468,7 +1468,7 @@ class linux(Board):
             pass  # set in __init__
         else:
             # default tool-chain for Linux-based boards:
-            self.toolchain = 'arm-linux-gnueabihf'
+            self.toolchain = 'aarch64-linux-gnu'
 
         # we should be able to do better here:
         if cfg.env.WITH_CAN:
@@ -1575,15 +1575,11 @@ class rpi5chen(linux):
     def init(self, *args, **kwargs):
         super(rpi5chen, self).init(*args, **kwargs)
         self.name = 'rpi5chen'
+        self.toolchain = 'aarch64-linux-gnu'
         
 def configure_env(self, env):
-    # 先调用父类的配置方法，这样保留 linux 父类的默认设置
+    # linux 父类的默认设置
     super(rpi5chen, self).configure_env(env)
-
-    # 设置交叉编译器相关环境变量
-    env['CROSS_COMPILE'] = 'aarch64-linux-gnu-'
-    env['CC'] = 'aarch64-linux-gnu-gcc'
-    env['CXX'] = 'aarch64-linux-gnu-g++'
 
     # 其他需要额外覆盖或自定义的环境变量，也可以在这里添加
 
