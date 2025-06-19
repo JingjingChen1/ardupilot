@@ -1,3 +1,12 @@
+
+This project is an effort to port Ardupilot to the Raspberry Pi 5. 
+Based on my observations, there is very limited support for the Raspberry Pi 5 within the official Ardupilot project, which has prevented me from running it successfully on this board.
+
+The goal of this project is to explore the feasibility of using a single-board computer (specifically, the Raspberry Pi 5) as a flight controller for a UAV. Ardupilot will run on a real-time Linux kernel (RT-Linux). 
+
+Currently, this project is in its early stages, referencing the obal project for a minimal hardware extension board configuration.
+
+
 # Building ArduPilot #
 
 ## Get the Source
