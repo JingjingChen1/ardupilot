@@ -29,9 +29,44 @@ using namespace Linux;
 
 UtilRPI::UtilRPI()
 {
-    _get_board_type_using_peripheral_base ();
+    /*
+        previous approach was using /proc/device-tree/soc/ranges which is not suitable for rpi 5.
+        now we use /proc/device-tree/model
+    */
+    // _get_board_type_using_peripheral_base ();
+    _get_board_type_using_devicetree_model ();
 }
 
+void UtilRPI::_get_board_type_using_devicetree_model() 
+{
+    FILE *fp;
+    _linux_board_version=LINUX_BOARD_TYPE::UNKNOWN_BOARD;
+
+    fp=fopen("/proc/device-tree/model","rb");
+    if (!fp)
+    {
+        printf("can not open /proc/device-tree/model\n");
+        return;
+    }
+    
+    char buf[32]={0};
+    const uint16_t len=fread(buf, 1, sizeof(buf), fp);
+    fclose(fp);
+
+    if (len)
+    {
+        if (strstr(buf,"Raspberry Pi 5"))
+        {
+            _linux_board_version = LINUX_BOARD_TYPE::RPI_5;
+            printf("RPI 5 \r\n");
+        } else{
+
+            printf("chenjingjing: Unknown board \n\r");
+        }
+        
+    }
+    
+}
 
 // 
 // previous appraoch was using /proc/device-tree/system/linux,revision

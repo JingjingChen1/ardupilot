@@ -27,6 +27,7 @@ public:
 protected:
     // Called in the constructor once
     void _get_board_type_using_peripheral_base();
+    void _get_board_type_using_devicetree_model ();
 
 private:
     LINUX_BOARD_TYPE _linux_board_version = LINUX_BOARD_TYPE::UNKNOWN_BOARD;
