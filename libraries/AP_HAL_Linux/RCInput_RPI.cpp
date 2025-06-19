@@ -103,6 +103,10 @@ static uint16_t RcChnGpioTbl[RCIN_RPI_CHN_NUM] = {
 #define RCIN_RPI_RPI4_CLK_BASE 0xFE101000 
 #define RCIN_RPI_RPI4_PCM_BASE 0xFE203000
 
+#define RCIN_RPI_RPI5_DMA_BASE 0x40188000
+#define RCIN_RPI_RPI5_CLK_BASE 0x40018000 
+#define RCIN_RPI_RPI5_PCM_BASE 0x400A0000
+
 #define RCIN_RPI_GPIO_LEV0_ADDR  0x7e200034
 #define RCIN_RPI_DMA_LEN         0x1000
 #define RCIN_RPI_CLK_LEN         0xA8
@@ -144,6 +148,7 @@ static uint16_t RcChnGpioTbl[RCIN_RPI_CHN_NUM] = {
 * see: https://www.raspberrypi.org/forums/viewtopic.php?t=251902
 */
 #define RCIN_RPI4_PLL_CLK        70000
+#define RCIN_RPI5_PLL_CLK        70000  
 
 
 
@@ -298,6 +303,10 @@ void RCInput_RPI::set_physical_addresses()
         dma_base = RCIN_RPI_RPI4_DMA_BASE;
         clk_base = RCIN_RPI_RPI4_CLK_BASE;
         pcm_base = RCIN_RPI_RPI4_PCM_BASE;
+    } else if (_version == LINUX_BOARD_TYPE::RPI_5) {
+        dma_base = RCIN_RPI_RPI5_DMA_BASE;
+        clk_base = RCIN_RPI_RPI5_CLK_BASE;
+        pcm_base = RCIN_RPI_RPI5_PCM_BASE;
     } else {
         fprintf(stderr,"Unknown Linux Board version!\n");
         exit(-1);
@@ -434,12 +443,15 @@ void RCInput_RPI::init_PCM()
     hal.scheduler->delay_microseconds(100);
     clk_reg[RCIN_RPI_PCMCLK_CNTL] = 0x5A000006;                              // Source=PLLD (500MHz)
     hal.scheduler->delay_microseconds(100);
-    if (_version != LINUX_BOARD_TYPE::RPI_4) {
+    if (_version != LINUX_BOARD_TYPE::RPI_4 && _version != LINUX_BOARD_TYPE::RPI_5) {
         clk_reg[RCIN_RPI_PCMCLK_DIV] = 0x5A000000 | ((RCIN_RPI_PLL_CLK/RCIN_RPI_SAMPLE_FREQ)<<12);   // Set pcm div for BCM2835 500MHZ clock. If we need to configure DMA frequency.
     }
-    else {
+    else if (_version == LINUX_BOARD_TYPE::RPI_4){
         // RPI-4
         clk_reg[RCIN_RPI_PCMCLK_DIV] = 0x5A000000 | ((RCIN_RPI4_PLL_CLK/RCIN_RPI_SAMPLE_FREQ)<< 12); // Set pcm div for BCM2711 700MHz clock. If we need to configure DMA frequency.
+    }else if (_version == LINUX_BOARD_TYPE::RPI_5) {
+        // RPI-5
+        clk_reg[RCIN_RPI_PCMCLK_DIV] = 0x5A000000 | ((RCIN_RPI5_PLL_CLK/RCIN_RPI_SAMPLE_FREQ)<< 12); // Set pcm div for BCM2712+RP1 200MHz clock
     }
     hal.scheduler->delay_microseconds(100);
     clk_reg[RCIN_RPI_PCMCLK_CNTL] = 0x5A000016;                              // Source=PLLD and enable
