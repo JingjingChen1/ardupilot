@@ -328,6 +328,9 @@ void _usage(void)
 
 void HAL_Linux::run(int argc, char* const argv[], Callbacks* callbacks) const
 {
+   
+    console->printf("chenjingjing: AP_HAL_Linux start running\n");
+
 #if AP_MODULE_SUPPORTED
     const char *module_path = AP_MODULE_DEFAULT_DIRECTORY;
 #endif
