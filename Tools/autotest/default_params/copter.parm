@@ -1,90 +1,1452 @@
-FRAME_TYPE	0
-FS_THR_ENABLE   1
-ARSPD_PIN 1
-ARSPD_BUS 2
-ATC_RAT_YAW_P 0.3
-ATC_RAT_YAW_I 0.02
-BATT_MONITOR    4
-COMPASS_OFS_X   5
-COMPASS_OFS_Y   13
-COMPASS_OFS_Z   -18
-COMPASS_OFS2_X   5
-COMPASS_OFS2_Y   13
-COMPASS_OFS2_Z   -18
-COMPASS_OFS3_X   5
-COMPASS_OFS3_Y   13
-COMPASS_OFS3_Z   -18
-FENCE_RADIUS    150
-FRAME_CLASS     1
-RC1_MAX         2000.000000
-RC1_MIN         1000.000000
-RC1_TRIM        1500.000000
-RC2_MAX         2000.000000
-RC2_MIN         1000.000000
-RC2_TRIM        1500.000000
-RC3_MAX         2000.000000
-RC3_MIN         1000.000000
-RC3_TRIM        1500.000000
-RC4_MAX         2000.000000
-RC4_MIN         1000.000000
-RC4_TRIM        1500.000000
-RC5_MAX         2000.000000
-RC5_MIN         1000.000000
-RC5_TRIM        1500.000000
-RC6_MAX         2000.000000
-RC6_MIN         1000.000000
-RC6_TRIM        1500.000000
-RC7_MAX         2000.000000
-RC7_MIN         1000.000000
-RC7_OPTION      7
-RC7_TRIM        1500.000000
-RC8_MAX         2000.000000
-RC8_MIN         1000.000000
-RC8_TRIM        1500.000000
-FLTMODE1        7
-FLTMODE2        9
-FLTMODE3        6
-FLTMODE4        3
-FLTMODE5        5
-FLTMODE6		0
-SIM_BARO_RND    0
-# we need small INS_ACC offsets so INS is recognised as being calibrated
-INS_ACCOFFS_X   0.001
-INS_ACCOFFS_Y   0.001
-INS_ACCOFFS_Z   0.001
-INS_ACCSCAL_X   1.001
-INS_ACCSCAL_Y   1.001
-INS_ACCSCAL_Z   1.001
-INS_ACC2OFFS_X   0.001
-INS_ACC2OFFS_Y   0.001
-INS_ACC2OFFS_Z   0.001
-INS_ACC2SCAL_X   1.001
-INS_ACC2SCAL_Y   1.001
-INS_ACC2SCAL_Z   1.001
-INS_ACC3OFFS_X   0.000
-INS_ACC3OFFS_Y   0.000
-INS_ACC3OFFS_Z   0.000
-INS_ACC3SCAL_X   1.000
-INS_ACC3SCAL_Y   1.000
-INS_ACC3SCAL_Z   1.000
-MOT_THST_EXPO   0.65
-MOT_THST_HOVER  0.39
-MOT_BAT_VOLT_MIN 9.6
-MOT_BAT_VOLT_MAX 12.8
-# flightmodes
-# switch 1 Circle
-# switch 2 LAND
-# switch 3 RTL
-# switch 4 Auto
-# switch 5 Loiter
-# switch 6 Stab
-# STABILIZE 	0 !
-# ACRO 			1
-# ALT_HOLD 		2
-# AUTO 			3 !
-# GUIDED 		4
-# LOITER 		5 !
-# RTL 			6 !
-# CIRCLE 		7 !
-# POSITION 		8
-# LAND 			9 !
+# ============================================================================
+# SITL仿真专用物理参数（真机飞行时删除此部分）
+# ============================================================================
+# 说明：这些参数仅用于仿真环境，定义飞机的物理特性和传感器噪声
+# 真机使用实际传感器数据，不需要这些参数
+
+# --- 机体物理特性 ---
+SIM_MASS,1.5                       # 总质量 kg（机架+飞控+电机+电池+其他）
+                                   # 估算：机架200g + 飞控100g + 电机280g + 电池718g + 其他202g
+SIM_ROLL_INERTIA,0.0125            # 横滚轴转动惯量 kg·m²（需实测或CAD计算）
+SIM_PITCH_INERTIA,0.0125           # 俯仰轴转动惯量 kg·m²
+SIM_YAW_INERTIA,0.0230             # 偏航轴转动惯量 kg·m²（≈Ixx+Iyy）
+SIM_WHEELBASE,0.5                  # 轴距 m（S500机架规格）
+
+# --- 重心位置（相对飞控） ---
+SIM_CG_X,0.0                       # 重心X偏移 m
+SIM_CG_Y,0.0                       # 重心Y偏移 m
+SIM_CG_Z,0.02                      # 重心Z偏移 m（电池在下方约2cm）
+
+# --- 螺旋桨参数 ---
+SIM_PROP_DIAMETER,9.5              # 螺旋桨直径 英寸（9450桨）
+SIM_PROP_PITCH,4.5                 # 螺旋桨螺距 英寸
+
+# --- 传感器噪声仿真（模拟真实传感器特性）---
+SIM_ACC_RND,0.3                    # 加速度计随机噪声 m/s²（ICM-42688典型值）
+SIM_GYR_RND,0.01                   # 陀螺仪随机噪声 rad/s
+SIM_BARO_RND,0.5                   # 气压计噪声（等效高度噪声 m）
+SIM_BARO_DRIFT,0.02                # 气压计漂移率 Pa/s
+SIM_GPS_DELAY,200                  # GPS数据延迟 ms（U-blox M9N典型值）
+SIM_GPS_TYPE,1                     # 仿真GPS类型：1=UBLOX
+SIM_GPS_NUMSATS,16                 # 仿真卫星数量
+SIM_GPS_HACC,1.5                   # 水平精度 m（M9N规格）
+SIM_GPS_VACC,2.5                   # 垂直精度 m
+
+# --- 电机仿真 ---
+SIM_MOTOR_HOVER,0.35               # 悬停油门比例（初始估算，实飞后自动学习）
+SIM_ENGINE_MUL,1.0                 # 电机效率倍数（1.0=100%）
+
+# --- 气动阻力系数 ---
+SIM_DRAG_X,0.08                    # X轴阻力系数（前后）
+SIM_DRAG_Y,0.08                    # Y轴阻力系数（左右）
+SIM_DRAG_Z,0.15                    # Z轴阻力系数（垂直，桨盘阻力）
+
+# --- 地面效应 ---
+SIM_GND_EFFECT,1.0                 # 地面效应强度（1.0=启用）
+SIM_GND_HGT,1.5                    # 地面效应影响高度 m
+
+# --- SITL电池仿真 ---
+SIM_BATT_VOLTAGE,12.6              # 仿真初始电压 V
+SIM_BATT_CAP_AH,10.0               # 仿真电池容量 Ah
+SIM_BATT_RESISTANCE,0.01           # 电池内阻 Ω
+
+# ============================================================================
+# 第一部分：硬件配置参数（来源于实机参数文件）
+# ============================================================================
+# 说明：这些参数定义了飞机的硬件拓扑和基本配置
+# 从"pixhawk6X+S500调试好.param"提取，保证与实机一致
+
+# --- 机架定义 ---
+FRAME_CLASS,1                      # 机架类别：1=四旋翼
+FRAME_TYPE,1                       # 机架类型：1=X型
+
+# --- 电机与ESC配置 ---
+MOT_PWM_TYPE,0                     # ESC协议：0=标准PWM（乐天20A）
+MOT_PWM_MIN,1000                   # 电机最小PWM值
+MOT_PWM_MAX,2000                   # 电机最大PWM值
+MOT_SPIN_MIN,0.15                  # 最小稳定转速比例（实机实测值）
+MOT_SPIN_MAX,0.95                  # 最大转速比例
+MOT_SPIN_ARM,0                     # 解锁怠速（0=使用SPIN_MIN）
+MOT_SPOOL_TIME,0.5                 # 电机加速时间 s
+MOT_SLEW_UP_TIME,0                 # 电机向上加速时间（0=禁用限制）
+MOT_SLEW_DN_TIME,0                 # 电机向下减速时间
+MOT_THST_EXPO,0.65                 # 推力曲线指数（9450桨经验值）
+MOT_YAW_HEADROOM,200               # Yaw轴预留控制裕度
+MOT_SAFE_DISARM,0                  # 安全解锁：0=标准行为
+MOT_SAFE_TIME,1                    # 安全解锁时间 s
+MOT_OPTIONS,0                      # 电机选项
+MOT_BOOST_SCALE,0                  # 油门提升比例
+
+# 电机输出通道映射（X型四旋翼）
+SERVO1_FUNCTION,33                 # 输出1 = 电机1（右前）
+SERVO1_MIN,1100
+SERVO1_MAX,1900
+SERVO1_TRIM,1500
+SERVO1_REVERSED,0
+
+SERVO2_FUNCTION,34                 # 输出2 = 电机2（左后）
+SERVO2_MIN,1100
+SERVO2_MAX,1900
+SERVO2_TRIM,1500
+SERVO2_REVERSED,0
+
+SERVO3_FUNCTION,35                 # 输出3 = 电机3（左前）
+SERVO3_MIN,1100
+SERVO3_MAX,1900
+SERVO3_TRIM,1500
+SERVO3_REVERSED,0
+
+SERVO4_FUNCTION,36                 # 输出4 = 电机4（右后）
+SERVO4_MIN,1100
+SERVO4_MAX,1900
+SERVO4_TRIM,1500
+SERVO4_REVERSED,0
+
+# 其他输出通道（未使用）
+SERVO5_FUNCTION,0
+SERVO6_FUNCTION,0
+SERVO7_FUNCTION,0
+SERVO8_FUNCTION,0
+SERVO9_FUNCTION,0
+SERVO10_FUNCTION,0
+SERVO11_FUNCTION,0
+SERVO12_FUNCTION,0
+SERVO13_FUNCTION,0
+SERVO14_FUNCTION,0
+SERVO15_FUNCTION,0
+SERVO16_FUNCTION,0
+
+# 舵机刷新率
+SERVO_RATE,50                      # 舵机刷新率 Hz（电机用）
+SERVO_DSHOT_RATE,0                 # DShot刷新率（当前使用PWM，设为0）
+SERVO_RC_FS_MSK,0                  # 遥控失控时舵机掩码
+
+# --- 电池监测配置（⚠️ 已修改为TATTU 10000mAh）---
+BATT_MONITOR,21                    # 监测类型：21=DroneCAN（PM07模块）
+BATT_CAPACITY,10000                # ✅ 修改：电池容量 mAh（原值5200，已更正）
+BATT_I2C_BUS,1                     # I2C总线号
+BATT_I2C_ADDR,0                    # I2C地址（0=自动）
+BATT_SHUNT,0.0005                  # 分流电阻 Ω（PM07规格）
+BATT_MAX_AMPS,90                   # 最大电流 A（保护阈值）
+
+# 电池电压保护阈值
+BATT_LOW_VOLT,10.5                 # 低电压警告 V（3.5V/cell × 3S）
+BATT_CRT_VOLT,9.9                  # ✅ 新增：严重低压 V（3.3V/cell，强制降落）
+BATT_LOW_MAH,2000                  # ✅ 新增：低容量警告 mAh（剩余20%）
+BATT_CRT_MAH,1000                  # ✅ 新增：严重低容量 mAh（剩余10%）
+BATT_LOW_TIMER,10                  # 低电压延迟 s
+
+BATT_ARM_VOLT,0                    # 解锁最低电压（0=禁用）
+BATT_ARM_MAH,0                     # 解锁最低容量（0=禁用）
+BATT_FS_LOW_ACT,0                  # 低电压失控动作（0=无动作，由FS_BATT处理）
+BATT_FS_CRT_ACT,0                  # 严重低压失控动作
+BATT_FS_VOLTSRC,0                  # 失控电压源：0=原始电压
+BATT_OPTIONS,0                     # 电池选项
+BATT_SERIAL_NUM,-1                 # 电池序列号（-1=禁用）
+
+# 电池电压电流比例（PM07默认值，通常无需修改）
+MOT_BAT_VOLT_MAX,0                 # 电机油门补偿最大电压（0=使用BATT参数）
+MOT_BAT_VOLT_MIN,0                 # 电机油门补偿最小电压
+MOT_BAT_CURR_MAX,0                 # 最大电流限制（0=禁用）
+MOT_BAT_CURR_TC,5                  # 电流时间常数 s
+MOT_BAT_IDX,0                      # 使用的电池索引（0=BATT1）
+
+# 其他电池监测器（禁用）
+BATT2_MONITOR,0
+BATT3_MONITOR,0
+BATT4_MONITOR,0
+BATT5_MONITOR,0
+BATT6_MONITOR,0
+BATT7_MONITOR,0
+BATT8_MONITOR,0
+BATT9_MONITOR,0
+
+# --- GPS配置 ---
+GPS_TYPE,1                         # GPS类型：1=AUTO（自动检测U-blox M9N）
+GPS_TYPE2,0                        # 第二GPS：0=禁用
+GPS_AUTO_CONFIG,1                  # 自动配置GPS
+GPS_AUTO_SWITCH,1                  # GPS自动切换
+GPS_BLEND_MASK,5                   # GPS混合掩码
+GPS_NAVFILTER,8                    # 导航滤波器：8=Airborne<1g（多旋翼）
+GPS_RATE_MS,200                    # GPS更新率 ms（5Hz）
+GPS_RATE_MS2,200                   # GPS2更新率
+GPS_DELAY_MS,0                     # GPS延迟（0=自动）
+GPS_DELAY_MS2,0                    # GPS2延迟
+GPS_HDOP_GOOD,140                  # HDOP良好阈值（1.4）
+GPS_MIN_DGPS,100                   # 差分GPS最小精度
+GPS_MIN_ELEV,-100                  # 最低卫星仰角 °
+GPS_PRIMARY,0                      # 主GPS选择（0=第一个可用）
+GPS_SAVE_CFG,2                     # 保存GPS配置：2=每次启动
+GPS_SBAS_MODE,2                    # SBAS模式：2=启用
+GPS_GNSS_MODE,0                    # GNSS模式（0=默认）
+GPS_GNSS_MODE2,0                   # GPS2 GNSS模式
+GPS_DRV_OPTIONS,0                  # GPS驱动选项
+GPS_RAW_DATA,0                     # 原始数据输出：0=禁用
+GPS_INJECT_TO,127                  # RTCM注入目标
+GPS_SBP_LOGMASK,-256               # SBP日志掩码
+
+# GPS CAN节点ID（DroneCAN GPS时使用）
+GPS_CAN_NODEID1,0
+GPS_CAN_NODEID2,0
+GPS1_CAN_OVRIDE,0
+GPS2_CAN_OVRIDE,0
+
+# GPS天线位置（相对飞控）
+GPS_POS1_X,0                       # GPS1 X偏移 m
+GPS_POS1_Y,0                       # GPS1 Y偏移 m
+GPS_POS1_Z,0                       # GPS1 Z偏移 m（负值=向上）
+GPS_POS2_X,0                       # GPS2位置
+GPS_POS2_Y,0
+GPS_POS2_Z,0
+
+# GPS_MB（Moving Baseline，双GPS时使用）
+GPS_MB1_TYPE,0                     # MB1类型：0=禁用
+GPS_MB2_TYPE,0
+
+# GPS通信端口
+GPS_COM_PORT,1                     # GPS1通信端口
+GPS_COM_PORT2,1                    # GPS2通信端口
+
+# --- 罗盘配置（硬件定义部分）---
+COMPASS_ENABLE,1                   # 启用罗盘
+COMPASS_EXTERNAL,1                 # 使用外置罗盘（GPS模块集成）
+COMPASS_ORIENT,6                   # 罗盘安装方向：6=Yaw270°（实机实测）
+COMPASS_ORIENT2,0                  # 罗盘2方向：0=无旋转
+COMPASS_ORIENT3,0                  # 罗盘3方向
+COMPASS_USE,1                      # 启用罗盘1
+COMPASS_USE2,0                     # 禁用罗盘2（已校准但未使用）
+COMPASS_USE3,0                     # 禁用罗盘3
+COMPASS_DISBLMSK,0                 # 罗盘禁用掩码
+
+# 罗盘学习和自动旋转
+COMPASS_LEARN,0                    # 罗盘学习：0=禁用
+COMPASS_AUTO_ROT,2                 # 自动旋转：2=完全自动
+COMPASS_AUTODEC,1                  # 自动磁偏角：1=启用
+COMPASS_DEC,0                      # 手动磁偏角（启用AUTO时忽略）
+
+# 罗盘校准参数（高级）
+COMPASS_CAL_FIT,16                 # 校准拟合质量阈值
+COMPASS_OFFS_MAX,1800              # 最大偏移值 mGauss
+COMPASS_FLTR_RNG,0                 # 滤波范围
+COMPASS_OPTIONS,0                  # 罗盘选项
+
+# 罗盘电机干扰补偿
+COMPASS_PMOT_EN,0                  # 电机补偿：0=禁用
+COMPASS_MOTCT,0                    # 电机补偿类型
+COMPASS_MOT_X,0                    # 电机补偿系数X
+COMPASS_MOT_Y,0
+COMPASS_MOT_Z,0
+COMPASS_MOT2_X,0
+COMPASS_MOT2_Y,0
+COMPASS_MOT2_Z,0
+COMPASS_MOT3_X,0
+COMPASS_MOT3_Y,0
+COMPASS_MOT3_Z,0
+
+# 罗盘比例因子（通常为0，禁用）
+COMPASS_SCALE,0
+COMPASS_SCALE2,0
+COMPASS_SCALE3,0
+
+# --- 遥控器配置 ---
+# 通道映射
+RCMAP_ROLL,1                       # Roll → 通道1
+RCMAP_PITCH,2                      # Pitch → 通道2
+RCMAP_THROTTLE,3                   # Throttle → 通道3
+RCMAP_YAW,4                        # Yaw → 通道4
+
+# 遥控器协议
+RC_PROTOCOLS,1                     # 遥控协议：1=All（自动检测PPM/SBUS）
+RC_OPTIONS,32                      # 遥控选项
+RC_SPEED,490                       # PWM刷新率 Hz
+RC_OVERRIDE_TIME,3                 # 覆盖超时 s
+RC_FS_TIMEOUT,1                    # 失控超时 s
+
+# 飞行模式通道
+FLTMODE_CH,5                       # 飞行模式开关：通道5
+FLTMODE_GCSBLOCK,0                 # 地面站模式切换阻止
+
+# 飞行模式定义
+FLTMODE1,0                         # 模式1：0=Stabilize（手动稳定）
+FLTMODE2,2                         # 模式2：2=AltHold（定高）
+FLTMODE3,16                        # 模式3：16=PosHold（定点悬停）
+FLTMODE4,16                        # 模式4：16=PosHold（重复，可改为Auto=3）
+FLTMODE5,6                         # 模式5：6=RTL（返航）
+FLTMODE6,6                         # 模式6：6=RTL（重复，可改为Land=9）
+
+# 初始模式
+INITIAL_MODE,0                     # 启动模式：0=Stabilize
+
+# --- 串口配置 ---
+SERIAL0_PROTOCOL,2                 # USB串口：2=MAVLink2（QGC）
+SERIAL0_BAUD,115                   # 波特率：115200
+
+SERIAL1_PROTOCOL,2                 # TELEM1：MAVLink2（数传）
+SERIAL1_BAUD,57                    # 57600
+SERIAL1_OPTIONS,0
+
+SERIAL2_PROTOCOL,2                 # TELEM2：MAVLink2
+SERIAL2_BAUD,57
+SERIAL2_OPTIONS,0
+
+SERIAL3_PROTOCOL,5                 # GPS1端口：5=GPS
+SERIAL3_BAUD,230                   # 230400（U-blox M9N）
+SERIAL3_OPTIONS,0
+
+SERIAL4_PROTOCOL,5                 # GPS2端口
+SERIAL4_BAUD,230
+SERIAL4_OPTIONS,0
+
+SERIAL5_PROTOCOL,-1                # SERIAL5：-1=禁用
+SERIAL5_BAUD,57
+SERIAL5_OPTIONS,0
+
+SERIAL6_PROTOCOL,-1                # SERIAL6：-1=禁用
+SERIAL6_BAUD,57
+SERIAL6_OPTIONS,0
+
+SERIAL7_PROTOCOL,-1                # SERIAL7：-1=禁用
+SERIAL7_BAUD,57
+SERIAL7_OPTIONS,0
+
+SERIAL8_PROTOCOL,2                 # SERIAL8：MAVLink2
+SERIAL8_BAUD,115200
+SERIAL8_OPTIONS,0
+
+# 串口透传（用于调试）
+SERIAL_PASS1,0                     # 透传模式1：0=禁用
+SERIAL_PASS2,-1                    # 透传模式2：-1=禁用
+SERIAL_PASSTIMO,15                 # 透传超时 s
+
+# --- 安全与保护 ---
+# 解锁检查
+ARMING_CHECK,1                     # 解锁检查：1=全部启用（推荐）
+ARMING_ACCTHRESH,0.75              # 加速度阈值 m/s²（倾斜检查）
+ARMING_MAGTHRESH,100               # 罗盘一致性阈值
+ARMING_RUDDER,2                    # 舵机解锁：2=启用
+ARMING_MIS_ITEMS,0                 # 任务项检查：0=禁用
+ARMING_OPTIONS,0                   # 解锁选项
+ARMING_CRSDP_IGN,0                 # CRSF深包忽略
+
+# 失控保护
+FS_THR_ENABLE,1                    # 油门失控保护：1=启用RTL
+FS_THR_VALUE,975                   # 失控判定PWM值
+FS_GCS_ENABLE,0                    # 地面站失联保护：0=禁用（⚠️ 建议改为1）
+FS_GCS_TIMEOUT,5                   # 地面站失联超时 s
+FS_EKF_ACTION,1                    # EKF失效动作：1=Land
+FS_EKF_THRESH,0.8                  # EKF失效阈值
+FS_EKF_FILT,5                      # EKF失效滤波
+FS_DR_ENABLE,2                     # 动态返航失控：2=启用RTL
+FS_DR_TIMEOUT,30                   # 动态返航超时 s
+FS_CRASH_CHECK,1                   # 碰撞检测：1=启用
+FS_VIBE_ENABLE,1                   # 振动失控：1=启用
+FS_OPTIONS,16                      # 失控选项
+
+# 电池失控保护（新增）
+BATT_FS_LOW_ACT,0                  # 低电压动作（由FS_BATT处理）
+BATT_FS_CRT_ACT,0                  # 严重低压动作
+BATT_FS_VOLTSRC,0                  # 失控电压源
+
+# 安全开关配置
+BRD_SAFETY_DEFLT,0                 # 安全开关默认状态：0=禁用（无物理按钮）
+BRD_SAFETY_MASK,16368              # 安全开关控制的通道掩码
+BRD_SAFETYOPTION,3                 # 安全选项：3=解锁前允许油门
+
+# 解锁延迟
+DISARM_DELAY,10                    # 自动解锁延迟 s
+
+# --- 地理围栏 ---
+FENCE_ENABLE,0                     # 地理围栏：0=禁用（首飞后建议启用）
+FENCE_TYPE,7                       # 围栏类型：7=圆柱体（水平+垂直）
+FENCE_ACTION,1                     # 违反动作：1=RTL
+FENCE_RADIUS,300                   # 水平半径 m
+FENCE_ALT_MAX,100                  # 最大高度 m
+FENCE_ALT_MIN,-10                  # 最小高度 m
+FENCE_MARGIN,2                     # 围栏余量 m
+FENCE_TOTAL,0                      # 自定义围栏点数
+
+# --- RTL（返航）配置 ---
+RTL_ALT,1500                       # 返航高度 cm（15m）
+RTL_ALT_FINAL,0                    # 最终高度 cm（0=降落）
+RTL_ALT_TYPE,0                     # 高度类型：0=相对起飞点
+RTL_CLIMB_MIN,0                    # 最小爬升高度 cm
+RTL_CONE_SLOPE,3                   # 返航锥坡度
+RTL_LOIT_TIME,5000                 # 返航悬停时间 ms
+RTL_SPEED,0                        # 返航速度 cm/s（0=使用WPNAV_SPEED）
+RTL_OPTIONS,0                      # RTL选项
+
+# --- RALLY点（集结点）---
+RALLY_INCL_HOME,1                  # 包含起飞点：1=是
+RALLY_LIMIT_KM,0.3                 # 集结点最大距离 km
+RALLY_TOTAL,0                      # 集结点总数
+
+# --- 降落配置 ---
+LAND_SPEED,50                      # 降落速度 cm/s
+LAND_SPEED_HIGH,0                  # 高速降落速度（0=禁用）
+LAND_ALT_LOW,1000                  # 低高度阈值 cm（切换到慢速降落）
+LAND_REPOSITION,1                  # 降落重新定位：1=启用
+
+# --- 起飞配置 ---
+PILOT_TKOFF_ALT,0                  # 自动起飞高度 cm（0=禁用）
+TKOFF_SLEW_TIME,2                  # 起飞油门倾斜时间 s
+TKOFF_THR_MAX,0.9                  # 起飞最大油门
+TKOFF_RPM_MIN,0                    # 起飞最小RPM（0=禁用）
+TKOFF_RPM_MAX,0                    # 起飞最大RPM
+
+# --- 板载硬件配置 ---
+BRD_TYPE,43                        # 板类型：43=Pixhawk6X
+BRD_OPTIONS,1                      # 板选项
+BRD_BOOT_DELAY,0                   # 启动延迟 ms
+BRD_SERIAL_NUM,0                   # 序列号
+BRD_VBUS_MIN,4.3                   # 最小USB电压 V
+BRD_VSERVO_MIN,0                   # 最小舵机电压 V
+BRD_IO_ENABLE,1                    # IO协处理器：1=启用
+BRD_IO_DSHOT,0                     # IO DShot：0=禁用
+BRD_SBUS_OUT,0                     # SBUS输出：0=禁用
+BRD_RTC_TYPES,1                    # RTC类型
+BRD_RTC_TZ_MIN,0                   # 时区偏移 min
+BRD_SER1_RTSCTS,2                  # SERIAL1流控
+BRD_SER2_RTSCTS,2                  # SERIAL2流控
+BRD_SER5_RTSCTS,2                  # SERIAL5流控
+BRD_SD_SLOWDOWN,0                  # SD卡降速
+BRD_SD_MISSION,0                   # SD卡任务存储
+BRD_SD_FENCE,0                     # SD卡围栏存储
+
+# 板载加热器（IMU温度控制）
+BRD_HEAT_TARG,45                   # 目标温度 ℃
+BRD_HEAT_P,50                      # 加热P增益
+BRD_HEAT_I,0.07                    # 加热I增益
+BRD_HEAT_IMAX,70                   # 加热I限幅
+BRD_HEAT_LOWMGN,0                  # 低温裕量
+
+# --- IMU配置（硬件启用部分）---
+INS_ENABLE_MASK,127                # IMU启用掩码：127=前7个IMU
+INS_USE,1                          # 使用IMU1
+INS_USE2,1                         # 使用IMU2
+INS_USE3,1                         # 使用IMU3
+INS_FAST_SAMPLE,7                  # 快速采样：7=IMU1+2+3
+INS_GYRO_RATE,1                    # 陀螺仪采样率倍数
+INS_ACCEL_FILTER,20                # 加速度计滤波 Hz
+INS_GYRO_FILTER,20                 # 陀螺仪滤波 Hz
+INS_GYR_CAL,1                      # 陀螺仪校准：1=启动时校准
+INS_STILL_THRESH,2.5               # 静止阈值 m/s²
+INS_TRIM_OPTION,1                  # Trim选项
+INS_ACC_BODYFIX,2                  # 加速度计固定模式
+
+# IMU位置（相对飞控中心）
+INS_POS1_X,0
+INS_POS1_Y,0
+INS_POS1_Z,0
+INS_POS2_X,0
+INS_POS2_Y,0
+INS_POS2_Z,0
+INS_POS3_X,0
+INS_POS3_Y,0
+INS_POS3_Z,0
+
+# IMU温度校准（禁用）
+INS_TCAL_OPTIONS,0
+INS_TCAL1_ENABLE,0
+INS_TCAL2_ENABLE,0
+INS_TCAL3_ENABLE,0
+
+# IMU日志记录
+INS_LOG_BAT_MASK,0                 # 批量日志掩码
+INS_LOG_BAT_CNT,1024               # 批量日志计数
+INS_LOG_BAT_LGCT,32                # 日志间隔
+INS_LOG_BAT_LGIN,20                # 日志输入
+INS_LOG_BAT_OPT,0                  # 日志选项
+INS_RAW_LOG_OPT,0                  # 原始日志选项
+
+# 谐波陷波器（动态滤波，禁用）
+INS_HNTCH_ENABLE,0                 # 主陷波器：0=禁用
+INS_HNTC2_ENABLE,0                 # 第二陷波器：0=禁用
+
+# --- 气压计配置 ---
+BARO_PRIMARY,0                     # 主气压计：0=第一个可用
+BARO_ALT_OFFSET,0                  # 高度偏移 m
+BARO_OPTIONS,0                     # 气压计选项
+BARO_FLTR_RNG,0                    # 滤波范围
+BARO_ALTERR_MAX,2000               # 最大高度误差 cm
+BARO_PROBE_EXT,0                   # 探测外部气压计
+BARO_EXT_BUS,-1                    # 外部气压计总线
+BARO_GND_TEMP,0                    # 地面温度（0=自动）
+BARO_FIELD_ELV,0                   # 机场海拔 m
+
+# --- 气压计设备ID（仿真时忽略）---
+BARO1_DEVID,292369                 # 气压计1设备ID（实机硬件识别码）
+BARO2_DEVID,1074177                # 气压计2设备ID
+BARO3_DEVID,0
+
+# 气压计校准启用（禁用补偿）
+BARO1_WCF_ENABLE,0                 # 风补偿：0=禁用
+BARO2_WCF_ENABLE,0
+BARO3_WCF_ENABLE,0
+
+# --- AHRS（姿态航向参考系统）---
+AHRS_EKF_TYPE,3                    # EKF类型：3=EKF3
+AHRS_GPS_GAIN,1                    # GPS增益
+AHRS_GPS_USE,1                     # 使用GPS
+AHRS_GPS_MINSATS,6                 # 最小卫星数
+AHRS_COMP_BETA,0.1                 # 罗盘补偿β
+AHRS_RP_P,0.2                      # Roll/Pitch P增益
+AHRS_YAW_P,0.2                     # Yaw P增益
+AHRS_WIND_MAX,0                    # 最大风速 m/s（0=无限制）
+AHRS_ORIENTATION,0                 # AHRS方向：0=无旋转
+AHRS_OPTIONS,0                     # AHRS选项
+
+# AHRS Trim（姿态微调）
+AHRS_TRIM_X,0                      # Roll trim rad
+AHRS_TRIM_Y,0                      # Pitch trim rad
+AHRS_TRIM_Z,0                      # Yaw trim rad
+
+# --- 主循环调度 ---
+SCHED_LOOP_RATE,400                # 主循环频率 Hz（Pixhawk6X标准）
+SCHED_DEBUG,0                      # 调度调试：0=禁用
+SCHED_OPTIONS,0                    # 调度选项
+
+# --- 日志记录 ---
+LOG_BACKEND_TYPE,1                 # 日志后端：1=文件
+LOG_FILE_BUFSIZE,200               # 文件缓冲区 KB
+LOG_FILE_DSRMROT,0                 # 解锁时旋转日志
+LOG_FILE_MB_FREE,500               # 最小空闲空间 MB
+LOG_FILE_TIMEOUT,5                 # 文件超时 s
+LOG_FILE_RATEMAX,0                 # 最大文件记录率 Hz（0=无限制）
+LOG_MAV_BUFSIZE,8                  # MAVLink日志缓冲区 KB
+LOG_MAV_RATEMAX,0                  # 最大MAVLink记录率
+LOG_BITMASK,176126                 # 日志位掩码（记录所有关键数据）
+LOG_DISARMED,0                     # 未解锁时记录：0=禁用（⚠️ 调试时可设为1）
+LOG_REPLAY,0                       # 日志重放：0=禁用
+LOG_MAX_FILES,500                  # 最大日志文件数
+LOG_DARM_RATEMAX,0                 # 解锁时最大速率
+
+# --- 通知与LED ---
+NTF_LED_BRIGHT,3                   # LED亮度（0-3）
+NTF_BUZZ_TYPES,5                   # 蜂鸣器类型
+NTF_LED_TYPES,123079               # LED类型掩码
+NTF_BUZZ_ON_LVL,1                  # 蜂鸣器电平
+NTF_LED_LEN,1                      # LED链长度
+NTF_DISPLAY_TYPE,0                 # 显示器类型：0=无
+NTF_LED_OVERRIDE,0                 # LED覆盖
+NTF_BUZZ_PIN,-1                    # 蜂鸣器引脚（-1=板载）
+NTF_BUZZ_VOLUME,100                # 蜂鸣器音量
+
+# --- 遥控器通道详细配置（来自实机）---
+RC1_MIN,1025
+RC1_MAX,2004
+RC1_TRIM,1515
+RC1_DZ,20
+RC1_OPTION,0
+RC1_REVERSED,0
+
+RC2_MIN,1025
+RC2_MAX,2003
+RC2_TRIM,1513
+RC2_DZ,20
+RC2_OPTION,0
+RC2_REVERSED,1                     # 通道2反向（实机设置）
+
+RC3_MIN,1025
+RC3_MAX,2004
+RC3_TRIM,1505
+RC3_DZ,30
+RC3_OPTION,0
+RC3_REVERSED,0
+
+RC4_MIN,1025
+RC4_MAX,2004
+RC4_TRIM,1515
+RC4_DZ,20
+RC4_OPTION,0
+RC4_REVERSED,0
+
+RC5_MIN,1078
+RC5_MAX,2004
+RC5_TRIM,1078
+RC5_DZ,0
+RC5_OPTION,0
+RC5_REVERSED,0
+
+RC6_MIN,1100
+RC6_MAX,1900
+RC6_TRIM,1500
+RC6_DZ,0
+RC6_OPTION,0
+RC6_REVERSED,0
+
+RC7_MIN,1025
+RC7_MAX,2004
+RC7_TRIM,1025
+RC7_DZ,0
+RC7_OPTION,0
+RC7_REVERSED,0
+
+RC8_MIN,1025
+RC8_MAX,2004
+RC8_TRIM,1025
+RC8_DZ,0
+RC8_OPTION,18                      # 通道8功能：18=Arm/Disarm
+RC8_REVERSED,0
+
+RC9_MIN,1025
+RC9_MAX,2004
+RC9_TRIM,1025
+RC9_DZ,0
+RC9_OPTION,0
+RC9_REVERSED,0
+
+RC10_MIN,1025
+RC10_MAX,2004
+RC10_TRIM,1025
+RC10_DZ,0
+RC10_OPTION,0
+RC10_REVERSED,0
+
+RC11_MIN,1100
+RC11_MAX,1900
+RC11_TRIM,1500
+RC11_DZ,0
+RC11_OPTION,0
+RC11_REVERSED,0
+
+RC12_MIN,1100
+RC12_MAX,1900
+RC12_TRIM,1500
+RC12_DZ,0
+RC12_OPTION,0
+RC12_REVERSED,0
+
+RC13_MIN,1100
+RC13_MAX,1900
+RC13_TRIM,1500
+RC13_DZ,0
+RC13_OPTION,0
+RC13_REVERSED,0
+
+RC14_MIN,1100
+RC14_MAX,1900
+RC14_TRIM,1500
+RC14_DZ,0
+RC14_OPTION,0
+RC14_REVERSED,0
+
+RC15_MIN,1100
+RC15_MAX,1900
+RC15_TRIM,1500
+RC15_DZ,0
+RC15_OPTION,0
+RC15_REVERSED,0
+
+RC16_MIN,1100
+RC16_MAX,1900
+RC16_TRIM,1500
+RC16_DZ,0
+RC16_OPTION,0
+RC16_REVERSED,0
+
+# --- MAVLink数据流速率 ---
+# SERIAL0（USB）
+SR0_EXT_STAT,2                     # 扩展状态 Hz
+SR0_EXTRA1,4                       # 额外数据1 Hz
+SR0_EXTRA2,4                       # 额外数据2 Hz
+SR0_EXTRA3,2                       # 额外数据3 Hz
+SR0_POSITION,2                     # 位置 Hz
+SR0_RAW_CTRL,2                     # 原始控制 Hz
+SR0_RAW_SENS,2                     # 原始传感器 Hz
+SR0_RC_CHAN,2                      # 遥控通道 Hz
+SR0_ADSB,0                         # ADS-B Hz
+SR0_PARAMS,0                       # 参数 Hz
+
+# SERIAL1（TELEM1）
+SR1_EXT_STAT,2
+SR1_EXTRA1,2
+SR1_EXTRA2,2
+SR1_EXTRA3,2
+SR1_POSITION,2
+SR1_RAW_CTRL,2
+SR1_RAW_SENS,2
+SR1_RC_CHAN,2
+SR1_ADSB,0
+SR1_PARAMS,0
+
+# SERIAL2（TELEM2）
+SR2_EXT_STAT,0
+SR2_EXTRA1,0
+SR2_EXTRA2,0
+SR2_EXTRA3,0
+SR2_POSITION,0
+SR2_RAW_CTRL,0
+SR2_RAW_SENS,0
+SR2_RC_CHAN,0
+SR2_ADSB,0
+SR2_PARAMS,0
+
+# SERIAL3-6（类似配置，略）
+SR3_EXT_STAT,2
+SR3_EXTRA1,2
+SR3_EXTRA2,2
+SR3_EXTRA3,2
+SR3_POSITION,2
+SR3_RAW_CTRL,2
+SR3_RAW_SENS,2
+SR3_RC_CHAN,2
+SR3_ADSB,0
+SR3_PARAMS,0
+
+SR4_EXT_STAT,0
+SR4_EXTRA1,0
+SR4_EXTRA2,0
+SR4_EXTRA3,0
+SR4_POSITION,0
+SR4_RAW_CTRL,0
+SR4_RAW_SENS,0
+SR4_RC_CHAN,0
+SR4_ADSB,0
+SR4_PARAMS,0
+
+SR5_EXT_STAT,0
+SR5_EXTRA1,0
+SR5_EXTRA2,0
+SR5_EXTRA3,0
+SR5_POSITION,0
+SR5_RAW_CTRL,0
+SR5_RAW_SENS,0
+SR5_RC_CHAN,0
+SR5_ADSB,0
+SR5_PARAMS,0
+
+SR6_EXT_STAT,0
+SR6_EXTRA1,0
+SR6_EXTRA2,0
+SR6_EXTRA3,0
+SR6_POSITION,0
+SR6_RAW_CTRL,0
+SR6_RAW_SENS,0
+SR6_RC_CHAN,0
+SR6_ADSB,0
+SR6_PARAMS,0
+
+# --- 其他硬件功能（大多禁用）---
+# CAN总线
+CAN_LOGLEVEL,0
+CAN_P1_DRIVER,0                    # CAN1驱动：0=禁用
+CAN_P2_DRIVER,0                    # CAN2驱动：0=禁用
+CAN_D1_PROTOCOL,1
+CAN_D1_PROTOCOL2,0
+CAN_D2_PROTOCOL,1
+CAN_D2_PROTOCOL2,0
+CAN_SLCAN_CPORT,0
+CAN_SLCAN_SERNUM,-1
+CAN_SLCAN_TIMOUT,0
+CAN_SLCAN_SDELAY,1
+
+# 测距仪
+RNGFND1_TYPE,0                     # 测距仪1：0=禁用
+RNGFND2_TYPE,0
+RNGFND3_TYPE,0
+RNGFND4_TYPE,0
+RNGFND5_TYPE,0
+RNGFND6_TYPE,0
+RNGFND7_TYPE,0
+RNGFND8_TYPE,0
+RNGFND9_TYPE,0
+RNGFNDA_TYPE,0
+RNGFND_FILT,0.5                    # 测距仪滤波
+
+# 云台
+CAM_RC_TYPE,0                      # 相机遥控：0=禁用
+CAM_AUTO_ONLY,0
+CAM_MAX_ROLL,0
+CAM1_TYPE,0                        # 相机1：0=禁用
+CAM2_TYPE,0
+MNT1_TYPE,0                        # 云台1：0=禁用
+MNT2_TYPE,0
+
+# 光流
+FLOW_TYPE,0                        # 光流：0=禁用
+
+# 避障
+AVOID_ENABLE,3                     # 避障：3=启用（停止+方向避障）
+AVOID_MARGIN,2                     # 避障余量 m
+AVOID_BEHAVE,0                     # 避障行为
+AVOID_ACCEL_MAX,3                  # 最大避障加速度 m/s²
+AVOID_BACKUP_SPD,0.75              # 后退速度 m/s
+AVOID_BACKZ_SPD,0.75               # 垂直后退速度
+AVOID_BACKUP_DZ,0.1                # 后退死区
+AVOID_ANGLE_MAX,1000               # 最大避障角 cdeg
+AVOID_DIST_MAX,5                   # 最大避障距离 m
+AVOID_ALT_MIN,0                    # 最小避障高度 m
+AVD_ENABLE,0                       # AirSim避障：0=禁用
+
+# 接近传感器
+PRX1_TYPE,0                        # 接近传感器1：0=禁用
+PRX2_TYPE,0
+PRX3_TYPE,0
+PRX_LOG_RAW,0
+PRX_FILT,0.25
+PRX_IGN_GND,0
+PRX_ALT_MIN,1
+
+# 精准降落
+PLND_ENABLED,0                     # 精准降落：0=禁用
+PLDP_THRESH,0.9
+PLDP_SPEED_DN,0
+PLDP_RNG_MIN,0
+PLDP_DELAY,0
+
+# 信标
+BCN_TYPE,0                         # 信标：0=禁用
+
+# ADS-B
+ADSB_TYPE,0                        # ADS-B：0=禁用
+
+# RPM传感器
+RPM1_TYPE,0                        # RPM1：0=禁用
+RPM2_TYPE,0
+
+# RSSI
+RSSI_TYPE,0                        # RSSI：0=禁用
+
+# 按钮
+BTN_ENABLE,0                       # 按钮：0=禁用
+
+# 继电器
+RELAY1_FUNCTION,0                  # 继电器1：0=禁用
+RELAY2_FUNCTION,0
+RELAY3_FUNCTION,0
+RELAY4_FUNCTION,0
+RELAY5_FUNCTION,0
+RELAY6_FUNCTION,0
+
+# 降落伞
+CHUTE_ENABLED,0                    # 降落伞：0=禁用
+
+# 喷雾器
+SPRAY_ENABLE,0                     # 喷雾器：0=禁用
+
+# 绞盘
+WINCH_TYPE,0                       # 绞盘：0=禁用
+
+# 机械爪
+GRIP_ENABLE,0                      # 机械爪：0=禁用
+
+# 发电机
+GEN_TYPE,0                         # 发电机：0=禁用
+
+# EFI（电喷）
+EFI_TYPE,0                         # EFI：0=禁用
+
+# 外部AHRS
+EAHRS_TYPE,0                       # 外部AHRS：0=禁用
+
+# 视觉里程计
+VISO_TYPE,0                        # 视觉里程计：0=禁用
+
+# 地形数据
+TERRAIN_ENABLE,1                   # 地形：1=启用
+TERRAIN_SPACING,100                # 地形间距 m
+TERRAIN_OPTIONS,0                  # 地形选项
+TERRAIN_MARGIN,0.05                # 地形余量
+TERRAIN_OFS_MAX,30                 # 最大偏移 m
+
+# MSP（MultiWii串行协议）
+MSP_OPTIONS,0
+MSP_OSD_NCELLS,0
+
+# OSD
+OSD_TYPE,0                         # OSD：0=禁用
+
+# VTX
+VTX_ENABLE,0                       # VTX：0=禁用
+
+# 网络
+NET_ENABLE,0                       # 网络：0=禁用
+NET_P1_TYPE,0
+NET_P2_TYPE,0
+NET_P3_TYPE,0
+NET_P4_TYPE,0
+
+# FrSky遥测
+FRSKY_UPLINK_ID,13
+FRSKY_DNLINK_ID,27
+FRSKY_DNLINK1_ID,20
+FRSKY_DNLINK2_ID,7
+FRSKY_OPTIONS,0
+
+# NMEA输出
+NMEA_MSG_EN,3
+NMEA_RATE_MS,100
+
+# Scripting（Lua脚本）
+SCR_ENABLE,0                       # Scripting：0=禁用
+
+# FFT分析
+FFT_ENABLE,0                       # FFT：0=禁用
+
+# 开发选项
+DEV_OPTIONS,0
+
+# 自定义旋转
+CUST_ROT_ENABLE,0
+
+# 飞行选项
+FLIGHT_OPTIONS,0
+
+# 系统ID
+SYSID_THISMAV,1                    # 本机MAV ID
+SYSID_MYGCS,255                    # 地面站ID
+SYSID_ENFORCE,0                    # 强制系统ID检查
+
+# 遥测延迟
+TELEM_DELAY,0                      # 遥测启动延迟 s
+
+# 格式版本
+FORMAT_VERSION,120                 # 参数格式版本
+
+# 统计信息（实机数据，仿真忽略）
+STAT_BOOTCNT,8                     # 启动次数
+STAT_FLTTIME,3                     # 飞行时间 min
+STAT_RUNTIME,1758                  # 运行时间 min
+STAT_RESET,1                       # 统计复位
+
+# ============================================================================
+# 第二部分：传感器校准参数（来源于实机）
+# ============================================================================
+# ⚠️ 警告：这些参数是实机传感器校准后的结果，具有唯一性
+# SITL仿真时这些参数会被忽略，使用模拟传感器数据
+# 真机移植时必须重新校准，不可直接复用
+
+# --- 罗盘校准数据 ---
+# 罗盘设备ID（硬件识别码）
+COMPASS_DEV_ID,658953              # 罗盘1设备ID（实机GPS模块集成罗盘）
+COMPASS_DEV_ID2,331777             # 罗盘2设备ID（实机板载罗盘）
+COMPASS_DEV_ID3,0
+COMPASS_DEV_ID4,0
+COMPASS_DEV_ID5,0
+COMPASS_DEV_ID6,0
+COMPASS_DEV_ID7,0
+COMPASS_DEV_ID8,0
+
+# 罗盘1校准值（外置罗盘，主罗盘）
+COMPASS_OFS_X,30.82134             # X轴硬铁偏移 mGauss
+COMPASS_OFS_Y,-0.2560618           # Y轴硬铁偏移
+COMPASS_OFS_Z,11.47256             # Z轴硬铁偏移
+COMPASS_DIA_X,1.036268             # X轴软铁校正（椭球直径比例）
+COMPASS_DIA_Y,0.9466786            # Y轴软铁校正
+COMPASS_DIA_Z,1.05717              # Z轴软铁校正
+COMPASS_ODI_X,0.01305587           # X轴干扰补偿（电机磁场）
+COMPASS_ODI_Y,0.06158888           # Y轴干扰补偿
+COMPASS_ODI_Z,-0.05629365          # Z轴干扰补偿
+
+# 罗盘2校准值（板载罗盘，备份，未启用）
+COMPASS_OFS2_X,47.01627
+COMPASS_OFS2_Y,29.50661
+COMPASS_OFS2_Z,-242.3585
+COMPASS_DIA2_X,1                   # 未进行软铁校正
+COMPASS_DIA2_Y,1
+COMPASS_DIA2_Z,1
+COMPASS_ODI2_X,0
+COMPASS_ODI2_Y,0
+COMPASS_ODI2_Z,0
+
+# 罗盘3（未使用）
+COMPASS_OFS3_X,0
+COMPASS_OFS3_Y,0
+COMPASS_OFS3_Z,0
+COMPASS_DIA3_X,1
+COMPASS_DIA3_Y,1
+COMPASS_DIA3_Z,1
+COMPASS_ODI3_X,0
+COMPASS_ODI3_Y,0
+COMPASS_ODI3_Z,0
+
+# 罗盘优先级
+COMPASS_PRIO1_ID,658953            # 主罗盘（外置GPS罗盘）
+COMPASS_PRIO2_ID,331777            # 备份罗盘（板载）
+COMPASS_PRIO3_ID,0
+
+# --- 加速度计校准数据 ---
+# 加速度计设备ID
+INS_ACC_ID,3866898                 # 加速度计1设备ID（ICM-42688-P）
+INS_ACC2_ID,3866906                # 加速度计2设备ID（ICM-42688-P）
+INS_ACC3_ID,3866890                # 加速度计3设备ID（ICM-20649）
+
+# 加速度计1校准值
+INS_ACCOFFS_X,-0.03172194          # X轴零偏 m/s²
+INS_ACCOFFS_Y,0.08330267           # Y轴零偏
+INS_ACCOFFS_Z,-0.08217716          # Z轴零偏
+INS_ACCSCAL_X,1                    # X轴尺度因子（已归一化）
+INS_ACCSCAL_Y,1
+INS_ACCSCAL_Z,1
+INS_ACC1_CALTEMP,37.3125           # 校准时温度 ℃
+
+# 加速度计2校准值
+INS_ACC2OFFS_X,-0.02774787
+INS_ACC2OFFS_Y,0.08109197
+INS_ACC2OFFS_Z,-0.0352211
+INS_ACC2SCAL_X,1
+INS_ACC2SCAL_Y,1
+INS_ACC2SCAL_Z,1
+INS_ACC2_CALTEMP,37.5625
+
+# 加速度计3校准值
+INS_ACC3OFFS_X,-0.0100696
+INS_ACC3OFFS_Y,0.0006745777
+INS_ACC3OFFS_Z,0.04773426
+INS_ACC3SCAL_X,1
+INS_ACC3SCAL_Y,1
+INS_ACC3SCAL_Z,1
+INS_ACC3_CALTEMP,29.8125
+
+# --- 陀螺仪校准数据 ---
+# 陀螺仪设备ID
+INS_GYR_ID,3866898                 # 陀螺仪1设备ID
+INS_GYR2_ID,3866906                # 陀螺仪2设备ID
+INS_GYR3_ID,3866890                # 陀螺仪3设备ID
+
+# 陀螺仪1校准值
+INS_GYROFFS_X,-0.008176878         # X轴零偏 rad/s
+INS_GYROFFS_Y,0.001784491          # Y轴零偏
+INS_GYROFFS_Z,-0.005390862         # Z轴零偏
+INS_GYR1_CALTEMP,33.28125          # 校准时温度 ℃
+
+# 陀螺仪2校准值
+INS_GYR2OFFS_X,0.009324571
+INS_GYR2OFFS_Y,0.002992499
+INS_GYR2OFFS_Z,0.002770392
+INS_GYR2_CALTEMP,33.40625
+
+# 陀螺仪3校准值
+INS_GYR3OFFS_X,0.000123713
+INS_GYR3OFFS_Y,-0.009068614
+INS_GYR3OFFS_Z,-0.0001455593
+INS_GYR3_CALTEMP,30.0625
+
+# --- 气压计校准数据 ---
+# 气压计地面气压（启动时自动测量）
+BARO1_GND_PRESS,101916.2           # 气压计1地面气压 Pa（实机现场测量）
+BARO2_GND_PRESS,101775.2           # 气压计2地面气压 Pa
+BARO3_GND_PRESS,0
+
+# ============================================================================
+# 第三部分：EKF融合参数（保留实机优化值）
+# ============================================================================
+# 说明：这些参数通过实机飞行日志分析得出，可作为同型号飞机的基准值
+
+# --- EKF3核心参数 ---
+EK3_ENABLE,1                       # 启用EKF3
+EK3_PRIMARY,0                      # 主EKF实例：0=第一个
+EK3_IMU_MASK,3                     # 使用的IMU：3=IMU1+IMU2
+EK3_CHECK_SCALE,100                # 检查比例
+EK3_ERR_THRESH,0.2                 # 错误阈值
+EK3_AFFINITY,0                     # CPU亲和性
+EK3_LOG_LEVEL,0                    # 日志级别
+
+# --- 传感器噪声参数（通过飞行日志优化）---
+# 陀螺仪
+EK3_GYRO_P_NSE,0.015               # 陀螺仪过程噪声 rad/s
+EK3_GBIAS_P_NSE,0.001              # 陀螺仪偏差过程噪声 rad/s
+
+# 加速度计
+EK3_ACC_P_NSE,0.35                 # 加速度计过程噪声 m/s²
+EK3_ABIAS_P_NSE,0.02               # 加速度计偏差过程噪声 m/s²
+EK3_ACC_BIAS_LIM,1                 # 加速度计偏差限制 m/s²
+
+# 罗盘
+EK3_MAG_M_NSE,0.05                 # 罗盘测量噪声 Gauss
+EK3_MAG_I_GATE,300                 # 罗盘新息门限
+EK3_MAG_CAL,3                      # 罗盘校准：3=启用（飞行中学习）
+EK3_MAGE_P_NSE,0.001               # 罗盘地磁场噪声
+EK3_MAGB_P_NSE,0.0001              # 罗盘体磁场噪声
+EK3_MAG_EF_LIM,50                  # 地磁场限制 mGauss
+EK3_MAG_MASK,0                     # 罗盘融合掩码
+
+# GPS/位置
+EK3_POSNE_M_NSE,0.5                # 水平位置测量噪声 m
+EK3_POS_I_GATE,500                 # 位置新息门限
+EK3_GLITCH_RAD,25                  # GPS突变半径 m
+EK3_GPS_CHECK,31                   # GPS检查项：31=全部
+EK3_GPS_VACC_MAX,0                 # GPS垂直精度最大值（0=无限制）
+
+# 速度
+EK3_VELNE_M_NSE,0.3                # 水平速度测量噪声 m/s
+EK3_VELD_M_NSE,0.5                 # 垂直速度测量噪声 m/s
+EK3_VEL_I_GATE,500                 # 速度新息门限
+
+# 高度/气压计
+EK3_ALT_M_NSE,2                    # 高度测量噪声 m
+EK3_HGT_DELAY,60                   # 高度延迟 ms
+EK3_HGT_I_GATE,500                 # 高度新息门限
+
+# 风速估计
+EK3_WIND_P_NSE,0.2                 # 风速过程噪声 m/s
+EK3_WIND_PSCALE,1                  # 风速比例
+
+# Yaw角
+EK3_YAW_M_NSE,0.5                  # Yaw测量噪声 rad
+EK3_YAW_I_GATE,300                 # Yaw新息门限
+
+# --- 传感器融合源配置 ---
+# 源1（主源，GPS）
+EK3_SRC1_POSXY,3                   # 水平位置源：3=GPS
+EK3_SRC1_POSZ,1                    # 垂直位置源：1=气压计
+EK3_SRC1_VELXY,3                   # 水平速度源：3=GPS
+EK3_SRC1_VELZ,3                    # 垂直速度源：3=GPS
+EK3_SRC1_YAW,1                     # Yaw源：1=罗盘
+
+# 源2（备份源）
+EK3_SRC2_POSXY,0                   # 0=禁用
+EK3_SRC2_POSZ,1                    # 气压计
+EK3_SRC2_VELXY,0
+EK3_SRC2_VELZ,0
+EK3_SRC2_YAW,0
+
+# 源3（第三源）
+EK3_SRC3_POSXY,0
+EK3_SRC3_POSZ,1
+EK3_SRC3_VELXY,0
+EK3_SRC3_VELZ,0
+EK3_SRC3_YAW,0
+
+# 源选项
+EK3_SRC_OPTIONS,1                  # 源选项：1=融合所有速度
+
+# --- 地面效应与拖曳力 ---
+EK3_GND_EFF_DZ,4                   # 地面效应死区 m
+EK3_DRAG_BCOEF_X,0                 # X轴拖曳力系数B（0=禁用）
+EK3_DRAG_BCOEF_Y,0                 # Y轴拖曳力系数B
+EK3_DRAG_M_NSE,0.5                 # 拖曳力测量噪声
+EK3_DRAG_MCOEF,0                   # 拖曳力系数M
+
+# --- 光流参数（当前禁用）---
+EK3_FLOW_USE,1                     # 光流使用：1=启用（但FLOW_TYPE=0实际禁用）
+EK3_FLOW_M_NSE,0.25                # 光流测量噪声
+EK3_FLOW_I_GATE,300                # 光流新息门限
+EK3_FLOW_DELAY,10                  # 光流延迟 ms
+EK3_MAX_FLOW,2.5                   # 最大光流 rad/s
+
+# --- 测距仪参数（当前禁用）---
+EK3_RNG_USE_HGT,-1                 # 测距仪高度使用：-1=禁用
+EK3_RNG_USE_SPD,2                  # 测距仪速度使用：2=当可用时
+EK3_RNG_M_NSE,0.5                  # 测距仪测量噪声 m
+EK3_RNG_I_GATE,500                 # 测距仪新息门限
+EK3_TERR_GRAD,0.1                  # 地形梯度
+
+# --- 信标参数（当前禁用）---
+EK3_BCN_M_NSE,1                    # 信标测量噪声 m
+EK3_BCN_I_GTE,500                  # 信标新息门限
+EK3_BCN_DELAY,50                   # 信标延迟 ms
+
+# --- 空速参数（多旋翼不使用）---
+EK3_EAS_M_NSE,1.4                  # 空速测量噪声 m/s
+EK3_EAS_I_GATE,400                 # 空速新息门限
+
+# --- 视觉里程计参数（当前禁用）---
+EK3_VIS_VERR_MIN,0.1               # 视觉速度误差最小值
+EK3_VIS_VERR_MAX,0.9               # 视觉速度误差最大值
+
+# --- 轮速计参数（当前禁用）---
+EK3_WENC_VERR,0.1                  # 轮速计速度误差
+
+# --- GSF（高斯和滤波器，Yaw估计）---
+EK3_GSF_RUN_MASK,3                 # GSF运行掩码：3=EKF1+2
+EK3_GSF_USE_MASK,3                 # GSF使用掩码
+EK3_GSF_RST_MAX,2                  # GSF最大复位次数
+
+# --- 其他EKF选项 ---
+EK3_BETA_MASK,0                    # 侧滑角融合掩码
+EK3_TAU_OUTPUT,25                  # 输出时间常数 cs
+EK3_HRT_FILT,2                     # 高频滤波
+EK3_NOAID_M_NSE,10                 # 无辅助测量噪声 m/s
+EK3_OGN_HGT_MASK,0                 # 原点高度掩码
+EK3_OGNM_TEST_SF,2                 # 原点测试比例因子
+
+# ============================================================================
+# 第四部分：飞行控制参数（非PID）
+# ============================================================================
+# 说明：这些参数定义了飞行行为，但不是PID控制器参数
+
+# --- 姿态限制 ---
+ANGLE_MAX,3000                     # 最大倾角 cdeg（30°）
+
+# --- 油门行为 ---
+PILOT_THR_BHV,0                    # 油门行为：0=反馈作用于上升速度
+PILOT_THR_FILT,0                   # 油门滤波 Hz（0=禁用）
+THR_DZ,100                         # 油门死区
+
+# --- 速度与加速度限制 ---
+PILOT_SPEED_UP,250                 # 上升最大速度 cm/s
+PILOT_SPEED_DN,0                   # 下降最大速度（0=使用PILOT_SPEED_UP）
+PILOT_ACCEL_Z,250                  # 垂直加速度 cm/s²
+
+# --- Yaw控制参数 ---
+PILOT_Y_RATE,202.5                 # Yaw最大速率 deg/s
+PILOT_Y_RATE_TC,0                  # Yaw速率时间常数（0=禁用）
+PILOT_Y_EXPO,0                     # Yaw指数（0=线性）
+
+# --- ACRO模式参数 ---
+ACRO_RP_RATE,360                   # Roll/Pitch速率 deg/s
+ACRO_RP_EXPO,0.3                   # Roll/Pitch指数
+ACRO_Y_RATE,202.5                  # Yaw速率
+ACRO_Y_EXPO,0                      # Yaw指数
+ACRO_RP_RATE_TC,0                  # Roll/Pitch速率时间常数
+ACRO_Y_RATE_TC,0                   # Yaw速率时间常数
+ACRO_THR_MID,0                     # 油门中点（0=自动）
+ACRO_TRAINER,2                     # ACRO训练器：2=悬停
+ACRO_BAL_ROLL,1                    # Roll自平衡
+ACRO_BAL_PITCH,1                   # Pitch自平衡
+ACRO_OPTIONS,0                     # ACRO选项
+
+# --- 自动航线速度 ---
+WPNAV_SPEED,1000                   # 航线水平速度 cm/s
+WPNAV_SPEED_UP,250                 # 航线上升速度 cm/s
+WPNAV_SPEED_DN,150                 # 航线下降速度 cm/s
+WPNAV_RADIUS,200                   # 航点半径 cm
+WPNAV_ACCEL,250                    # 航线加速度 cm/s²
+WPNAV_ACCEL_C,0                    # 航线转弯加速度（0=使用WPNAV_ACCEL）
+WPNAV_ACCEL_Z,100                  # 航线垂直加速度 cm/s²
+WPNAV_JERK,1                       # 航线加加速度 m/s³
+WPNAV_TER_MARGIN,10                # 地形余量 m
+WPNAV_RFND_USE,1                   # 使用测距仪：1=启用
+WP_YAW_BEHAVIOR,2                  # Yaw行为：2=面向下一航点
+WP_NAVALT_MIN,0                    # 最小导航高度 cm
+
+# --- Loiter（定点）模式 ---
+LOIT_SPEED,1250                    # Loiter最大速度 cm/s
+LOIT_ACC_MAX,500                   # Loiter最大加速度 cm/s²
+LOIT_BRK_ACCEL,250                 # Loiter刹车加速度 cm/s²
+LOIT_BRK_JERK,500                  # Loiter刹车加加速度 cm/s³
+LOIT_BRK_DELAY,1                   # Loiter刹车延迟 s
+LOIT_ANG_MAX,0                     # Loiter最大角度（0=使用ANGLE_MAX）
+
+# --- PosHold（位置保持）模式 ---
+PHLD_BRAKE_RATE,8                  # PosHold刹车速率 deg/s²
+PHLD_BRAKE_ANGLE,3000              # PosHold刹车角度 cdeg
+
+# --- FlowHold（光流保持）模式 ---
+FHLD_FILT_HZ,5                     # FlowHold滤波 Hz
+FHLD_FLOW_MAX,0.6                  # 最大光流 rad/s
+FHLD_QUAL_MIN,10                   # 最小质量
+FHLD_BRAKE_RATE,8                  # 刹车速率
+FHLD_XY_P,0.2                      # 位置P增益
+FHLD_XY_I,0.3                      # 位置I增益
+FHLD_XY_IMAX,3000                  # 位置I限幅
+FHLD_XY_FILT_HZ,5                  # XY滤波 Hz
+
+# --- Circle（绕圈）模式 ---
+CIRCLE_RADIUS,1000                 # 圆半径 cm
+CIRCLE_RATE,20                     # 圆速率 deg/s
+CIRCLE_OPTIONS,1                   # 圆选项
+
+# --- 简单模式 ---
+SIMPLE,0                           # 简单模式掩码
+SUPER_SIMPLE,0                     # 超级简单模式掩码
+
+# --- 地形跟随 ---
+SURFTRAK_MODE,1                    # 地形跟随模式：1=高度跟随
+SURFTRAK_TC,1                      # 地形跟随时间常数 s
+
+# --- Throw（抛飞）模式 ---
+THROW_TYPE,0                       # 抛飞类型：0=禁用
+THROW_NEXTMODE,18                  # 抛飞后模式
+THROW_MOT_START,0                  # 电机启动高度
+THROW_ALT_MIN,0                    # 最小高度
+THROW_ALT_MAX,0                    # 最大高度
+
+# --- ZigZag模式 ---
+ZIGZ_AUTO_ENABLE,0                 # ZigZag自动：0=禁用
+
+# --- WindVane（风向标）---
+WVANE_ENABLE,0                     # 风向标：0=禁用
+
+# --- Follow（跟随）模式 ---
+FOLL_ENABLE,0                      # 跟随：0=禁用
+
+# --- Guided（引导）模式 ---
+GUID_TIMEOUT,3                     # Guided超时 s
+GUID_OPTIONS,0                     # Guided选项
+
+# --- Auto模式选项 ---
+AUTO_OPTIONS,0                     # Auto选项
+
+# --- 地面效应补偿 ---
+GND_EFFECT_COMP,1                  # 地面效应补偿：1=启用
+
+# --- 自动调参 ---
+AUTOTUNE_AXES,7                    # 自动调参轴：7=Roll+Pitch+Yaw
+AUTOTUNE_AGGR,0.1                  # 激进程度（0.05-0.2）
+AUTOTUNE_MIN_D,0.001               # 最小D增益
+
+# --- Tune参数（实时调参通道）---
+TUNE,0                             # Tune参数选择：0=无
+TUNE_MIN,0                         # Tune最小值
+TUNE_MAX,0                         # Tune最大值
+
+# --- Smart RTL（智能返航）---
+SRTL_ACCURACY,2                    # 路径记录精度 m
+SRTL_POINTS,300                    # 最大路径点数
+SRTL_OPTIONS,0                     # SRTL选项
+
+# --- 滤波器（通用数字滤波器，当前未使用）---
+FILT1_TYPE,0
+FILT2_TYPE,0
+FILT3_TYPE,0
+FILT4_TYPE,0
+FILT5_TYPE,0
+FILT6_TYPE,0
+FILT7_TYPE,0
+FILT8_TYPE,0
+
+# --- 其他 ---
+SID_AXIS,0                         # System ID轴
+GCS_PID_MASK,0                     # 地面站PID掩码
+
+# ============================================================================
+# 第五部分：PID控制参数（文件末尾，来源于初始值）
+# ============================================================================
+# ⚠️ 重要说明：
+# - 这些是基于理论计算的初始PID值，适用于首次飞行
+# - 不使用实机调试后的PID值，因为需要通过仿真或实飞重新验证
+# - 对于同型号飞机，可作为调参起点，但仍需微调
+
+# -----------------------------
+# 5.1 姿态角速度控制环（最内环）
+# -----------------------------
+# 说明：控制Roll/Pitch/Yaw的角速度，直接作用于电机输出
+# 调试优先级：最高（必须先调稳）
+# 调试方法：逐步增大P值直到出现高频震荡，回退20%
+
+# --- Roll角速度环 ---
+ATC_RAT_RLL_P,0.135                # P增益（基准值，500mm机架）
+ATC_RAT_RLL_I,0.135                # I增益（通常=P）
+ATC_RAT_RLL_D,0.0036               # D增益（通常=P/30 ~ P/50）
+ATC_RAT_RLL_IMAX,0.5               # I限幅（0-1，防积分饱和）
+ATC_RAT_RLL_FF,0                   # 前馈增益（0=禁用）
+ATC_RAT_RLL_FLTD,20.0              # D项低通滤波 Hz
+ATC_RAT_RLL_FLTT,20.0              # 目标角速度低通滤波 Hz
+ATC_RAT_RLL_FLTE,0                 # 误差低通滤波 Hz（0=禁用）
+ATC_RAT_RLL_SMAX,0                 # 最大转速限制 deg/s（0=禁用）
+ATC_RAT_RLL_PDMX,0                 # PD最大输出（0=无限制）
+ATC_RAT_RLL_D_FF,0                 # D前馈（0=禁用）
+ATC_RAT_RLL_NTF,0                  # 陷波滤波器频率 Hz（0=禁用）
+ATC_RAT_RLL_NEF,0                  # 陷波滤波器误差频率
+
+# --- Pitch角速度环 ---
+ATC_RAT_PIT_P,0.135
+ATC_RAT_PIT_I,0.135
+ATC_RAT_PIT_D,0.0036
+ATC_RAT_PIT_IMAX,0.5
+ATC_RAT_PIT_FF,0
+ATC_RAT_PIT_FLTD,20.0
+ATC_RAT_PIT_FLTT,20.0
+ATC_RAT_PIT_FLTE,0
+ATC_RAT_PIT_SMAX,0
+ATC_RAT_PIT_PDMX,0
+ATC_RAT_PIT_D_FF,0
+ATC_RAT_PIT_NTF,0
+ATC_RAT_PIT_NEF,0
+
+# --- Yaw角速度环 ---
+ATC_RAT_YAW_P,0.18                 # Yaw的P值通常略高于Roll/Pitch
+ATC_RAT_YAW_I,0.018                # I值约为P的1/10
+ATC_RAT_YAW_D,0                    # Yaw一般不用D（避免噪声）
+ATC_RAT_YAW_IMAX,0.5
+ATC_RAT_YAW_FF,0
+ATC_RAT_YAW_FLTD,20.0
+ATC_RAT_YAW_FLTT,20.0
+ATC_RAT_YAW_FLTE,2.5               # Yaw误差滤波略低
+ATC_RAT_YAW_SMAX,0
+ATC_RAT_YAW_PDMX,0
+ATC_RAT_YAW_D_FF,0
+ATC_RAT_YAW_NTF,0
+ATC_RAT_YAW_NEF,0
+
+# -----------------------------
+# 5.2 姿态角度控制环（中环）
+# -----------------------------
+# 说明：控制目标角度，输出角速度指令给内环
+# 调试顺序：在角速度环稳定后调整
+# 调试方法：从P=3.0开始，逐步增加到期望响应速度
+
+# --- Roll角度环 ---
+ATC_ANG_RLL_P,4.5                  # P增益（中等响应，范围3-7）
+
+# --- Pitch角度环 ---
+ATC_ANG_PIT_P,4.5
+
+# --- Yaw角度环 ---
+ATC_ANG_YAW_P,4.5
+
+# --- 整体姿态控制参数 ---
+ATC_INPUT_TC,0.15                  # 输入时间常数 s（越小越灵敏）
+ATC_ACCEL_R_MAX,110000             # Roll最大加速度 deg/s²
+ATC_ACCEL_P_MAX,110000             # Pitch最大加速度 deg/s²
+ATC_ACCEL_Y_MAX,27000              # Yaw最大加速度 deg/s²（较小）
+ATC_RATE_FF_ENAB,1                 # 速率前馈：1=启用
+ATC_RATE_P_MAX,0                   # 速率P最大值（0=无限制）
+ATC_RATE_R_MAX,0                   # Roll速率最大值
+ATC_RATE_Y_MAX,0                   # Yaw速率最大值
+ATC_SLEW_YAW,6000                  # Yaw转速限制 deg/s²
+ATC_ANGLE_BOOST,1                  # 角度增强：1=启用
+ATC_ANG_LIM_TC,1                   # 角度限制时间常数 s
+ATC_THR_MIX_MIN,0.1                # 最小油门混合
+ATC_THR_MIX_MAX,0.5                # 最大油门混合
+ATC_THR_MIX_MAN,0.1                # 手动油门混合
+ATC_THR_G_BOOST,0                  # 油门重力增强（0=禁用）
+
+# -----------------------------
+# 5.3 位置速度控制环（外环）
+# -----------------------------
+# 说明：GPS/光流模式下的位置和速度控制
+# 调试顺序：最后调整（依赖内环稳定）
+# 调试方法：先调速度环，再调位置环
+
+# --- 水平位置环 ---
+PSC_POSXY_P,1.0                    # 水平位置P增益（位置误差→速度）
+PSC_ANGLE_MAX,0                    # 最大倾角（0=使用ANGLE_MAX）
+PSC_JERK_XY,5                      # 水平加加速度 m/s³
+PSC_JERK_Z,5                       # 垂直加加速度 m/s³
+
+# --- 水平速度环 ---
+PSC_VELXY_P,2.0                    # 水平速度P增益（速度误差→倾角）
+PSC_VELXY_I,1.0                    # 速度I增益
+PSC_VELXY_D,0.5                    # 速度D增益
+PSC_VELXY_IMAX,1000                # I限幅 cm/s
+PSC_VELXY_FF,0                     # 前馈（0=禁用）
+PSC_VELXY_FLTD,5.0                 # D项滤波 Hz
+PSC_VELXY_FLTE,5.0                 # 误差滤波 Hz
+
+# --- 垂直位置环（高度）---
+PSC_POSZ_P,1.0                     # 高度位置P增益
+
+# --- 垂直速度环 ---
+PSC_VELZ_P,5.0                     # 垂直速度P增益
+PSC_VELZ_I,0                       # 垂直速度I增益（初始设0，避免积分问题）
+PSC_VELZ_D,0                       # D增益（初始设0）
+PSC_VELZ_IMAX,1000                 # I限幅 cm/s
+PSC_VELZ_FF,0                      # 前馈
+PSC_VELZ_FLTD,5.0                  # D滤波 Hz
+PSC_VELZ_FLTE,5.0                  # 误差滤波 Hz
+
+# --- 高度加速度环 ---
+PSC_ACCZ_P,0.5                     # 垂直加速度P增益
+PSC_ACCZ_I,1.0                     # 垂直加速度I增益
+PSC_ACCZ_D,0                       # D增益
+PSC_ACCZ_IMAX,800                  # I限幅 cm/s²
+PSC_ACCZ_FF,0                      # 前馈
+PSC_ACCZ_FLTD,0                    # D滤波（0=使用默认）
+PSC_ACCZ_FLTE,20.0                 # 误差滤波 Hz
+PSC_ACCZ_FLTT,0                    # 目标滤波（0=使用默认）
+PSC_ACCZ_SMAX,0                    # 最大转速（0=无限制）
+PSC_ACCZ_PDMX,0                    # PD最大输出
+PSC_ACCZ_D_FF,0                    # D前馈
+PSC_ACCZ_NTF,0                     # 陷波滤波器
+PSC_ACCZ_NEF,0                     # 陷波滤波器误差
+
+# -----------------------------
+# 5.4 悬停油门学习
+# -----------------------------
+MOT_HOVER_LEARN,2                  # 悬停油门学习：2=自动学习（推荐）
+MOT_THST_HOVER,0.35                # 初始悬停油门值（实飞后自动更新）
+
+

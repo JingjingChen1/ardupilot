@@ -541,6 +541,10 @@ void AP_Vehicle::setup()
 
 void AP_Vehicle::loop()
 {
+
+    // hal.console->printf("=== chenjingjing HAL CONSOLE TEST: ArduCopter loop() starting ===\n");
+    logger.Write_Message("=== chenjingjing logger TEST: ArduCopter loop() starting ===\n");
+
 #if AP_SCHEDULER_ENABLED
     scheduler.loop();
     G_Dt = scheduler.get_loop_period_s();
