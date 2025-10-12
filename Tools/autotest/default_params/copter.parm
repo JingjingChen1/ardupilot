@@ -451,11 +451,11 @@ INS_TCAL2_ENABLE,0
 INS_TCAL3_ENABLE,0
 
 # IMU日志记录
-INS_LOG_BAT_MASK,0                 # 批量日志掩码
+INS_LOG_BAT_MASK,3                 # 批量日志掩码
 INS_LOG_BAT_CNT,1024               # 批量日志计数
 INS_LOG_BAT_LGCT,32                # 日志间隔
 INS_LOG_BAT_LGIN,20                # 日志输入
-INS_LOG_BAT_OPT,0                  # 日志选项
+INS_LOG_BAT_OPT,4                  # 日志选项
 INS_RAW_LOG_OPT,0                  # 原始日志选项
 
 # 谐波陷波器（动态滤波，禁用）
@@ -514,7 +514,7 @@ LOG_FILE_TIMEOUT,5                 # 文件超时 s
 LOG_FILE_RATEMAX,0                 # 最大文件记录率 Hz（0=无限制）
 LOG_MAV_BUFSIZE,8                  # MAVLink日志缓冲区 KB
 LOG_MAV_RATEMAX,0                  # 最大MAVLink记录率
-LOG_BITMASK,176126                 # 日志位掩码（记录所有关键数据）
+LOG_BITMASK,180222                 # 日志位掩码（记录所有关键数据）
 LOG_DISARMED,0                     # 未解锁时记录：0=禁用（⚠️ 调试时可设为1）
 LOG_REPLAY,0                       # 日志重放：0=禁用
 LOG_MAX_FILES,500                  # 最大日志文件数
@@ -881,7 +881,8 @@ NMEA_RATE_MS,100
 SCR_ENABLE,0                       # Scripting：0=禁用
 
 # FFT分析
-FFT_ENABLE,0                       # FFT：0=禁用
+FFT_ENABLE,1                       # FFT：0=禁用
+FFT_SAMPLEo_MODE,2                 # 对比前后滤波频谱
 
 # 开发选项
 DEV_OPTIONS,0
@@ -1040,7 +1041,7 @@ EK3_IMU_MASK,3                     # 使用的IMU：3=IMU1+IMU2
 EK3_CHECK_SCALE,100                # 检查比例
 EK3_ERR_THRESH,0.2                 # 错误阈值
 EK3_AFFINITY,0                     # CPU亲和性
-EK3_LOG_LEVEL,0                    # 日志级别
+EK3_LOG_LEVEL,2                    # 日志级别
 
 # --- 传感器噪声参数（通过飞行日志优化）---
 # 陀螺仪
