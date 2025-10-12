@@ -1,3 +1,90 @@
+FS_THR_ENABLE   1
+ARSPD_PIN 1
+ARSPD_BUS 2
+BATT_MONITOR    4
+
+COMPASS_OFS_X   5
+COMPASS_OFS_Y   13
+COMPASS_OFS_Z   -18
+COMPASS_OFS2_X   5
+COMPASS_OFS2_Y   13
+COMPASS_OFS2_Z   -18
+COMPASS_OFS3_X   5
+COMPASS_OFS3_Y   13
+COMPASS_OFS3_Z   -18
+
+RC1_MAX         2000.000000
+RC1_MIN         1000.000000
+RC1_TRIM        1500.000000
+RC2_MAX         2000.000000
+RC2_MIN         1000.000000
+RC2_TRIM        1500.000000
+RC3_MAX         2000.000000
+RC3_MIN         1000.000000
+RC3_TRIM        1500.000000
+RC4_MAX         2000.000000
+RC4_MIN         1000.000000
+RC4_TRIM        1500.000000
+RC5_MAX         2000.000000
+RC5_MIN         1000.000000
+RC5_TRIM        1500.000000
+RC6_MAX         2000.000000
+RC6_MIN         1000.000000
+RC6_TRIM        1500.000000
+RC7_MAX         2000.000000
+RC7_MIN         1000.000000
+RC7_OPTION      7
+RC7_TRIM        1500.000000
+RC8_MAX         2000.000000
+RC8_MIN         1000.000000
+RC8_TRIM        1500.000000
+FLTMODE1        7
+FLTMODE2        9
+FLTMODE3        6
+FLTMODE4        3
+FLTMODE5        5
+FLTMODE6		0
+
+# we need small INS_ACC offsets so INS is recognised as being calibrated
+INS_ACCOFFS_X   0.001
+INS_ACCOFFS_Y   0.001
+INS_ACCOFFS_Z   0.001
+INS_ACCSCAL_X   1.001
+INS_ACCSCAL_Y   1.001
+INS_ACCSCAL_Z   1.001
+INS_ACC2OFFS_X   0.001
+INS_ACC2OFFS_Y   0.001
+INS_ACC2OFFS_Z   0.001
+INS_ACC2SCAL_X   1.001
+INS_ACC2SCAL_Y   1.001
+INS_ACC2SCAL_Z   1.001
+INS_ACC3OFFS_X   0.000
+INS_ACC3OFFS_Y   0.000
+INS_ACC3OFFS_Z   0.000
+INS_ACC3SCAL_X   1.000
+INS_ACC3SCAL_Y   1.000
+INS_ACC3SCAL_Z   1.000
+
+# flightmodes
+# switch 1 Circle
+# switch 2 LAND
+# switch 3 RTL
+# switch 4 Auto
+# switch 5 Loiter
+# switch 6 Stab
+# STABILIZE 	0 !
+# ACRO 			1
+# ALT_HOLD 		2
+# AUTO 			3 !
+# GUIDED 		4
+# LOITER 		5 !
+# RTL 			6 !
+# CIRCLE 		7 !
+# POSITION 		8
+# LAND 			9 !
+
+
+# chenjingjing
 # ============================================================================
 # SITL仿真专用物理参数（真机飞行时删除此部分）
 # ============================================================================
@@ -122,11 +209,7 @@ SERVO_DSHOT_RATE,0                 # DShot刷新率（当前使用PWM，设为0�
 SERVO_RC_FS_MSK,0                  # 遥控失控时舵机掩码
 
 # --- 电池监测配置（⚠️ 已修改为TATTU 10000mAh）---
-BATT_MONITOR,21                    # 监测类型：21=DroneCAN（PM07模块）
 BATT_CAPACITY,10000                # ✅ 修改：电池容量 mAh（原值5200，已更正）
-BATT_I2C_BUS,1                     # I2C总线号
-BATT_I2C_ADDR,0                    # I2C地址（0=自动）
-BATT_SHUNT,0.0005                  # 分流电阻 Ω（PM07规格）
 BATT_MAX_AMPS,90                   # 最大电流 A（保护阈值）
 
 # 电池电压保护阈值
@@ -145,8 +228,8 @@ BATT_OPTIONS,0                     # 电池选项
 BATT_SERIAL_NUM,-1                 # 电池序列号（-1=禁用）
 
 # 电池电压电流比例（PM07默认值，通常无需修改）
-MOT_BAT_VOLT_MAX,0                 # 电机油门补偿最大电压（0=使用BATT参数）
-MOT_BAT_VOLT_MIN,0                 # 电机油门补偿最小电压
+MOT_BAT_VOLT_MAX,12.8                 # 电机油门补偿最大电压（0=使用BATT参数）
+MOT_BAT_VOLT_MIN,9.6                 # 电机油门补偿最小电压
 MOT_BAT_CURR_MAX,0                 # 最大电流限制（0=禁用）
 MOT_BAT_CURR_TC,5                  # 电流时间常数 s
 MOT_BAT_IDX,0                      # 使用的电池索引（0=BATT1）
@@ -185,27 +268,7 @@ GPS_RAW_DATA,0                     # 原始数据输出：0=禁用
 GPS_INJECT_TO,127                  # RTCM注入目标
 GPS_SBP_LOGMASK,-256               # SBP日志掩码
 
-# GPS CAN节点ID（DroneCAN GPS时使用）
-GPS_CAN_NODEID1,0
-GPS_CAN_NODEID2,0
-GPS1_CAN_OVRIDE,0
-GPS2_CAN_OVRIDE,0
 
-# GPS天线位置（相对飞控）
-GPS_POS1_X,0                       # GPS1 X偏移 m
-GPS_POS1_Y,0                       # GPS1 Y偏移 m
-GPS_POS1_Z,0                       # GPS1 Z偏移 m（负值=向上）
-GPS_POS2_X,0                       # GPS2位置
-GPS_POS2_Y,0
-GPS_POS2_Z,0
-
-# GPS_MB（Moving Baseline，双GPS时使用）
-GPS_MB1_TYPE,0                     # MB1类型：0=禁用
-GPS_MB2_TYPE,0
-
-# GPS通信端口
-GPS_COM_PORT,1                     # GPS1通信端口
-GPS_COM_PORT2,1                    # GPS2通信端口
 
 # --- 罗盘配置（硬件定义部分）---
 COMPASS_ENABLE,1                   # 启用罗盘
@@ -230,52 +293,6 @@ COMPASS_OFFS_MAX,1800              # 最大偏移值 mGauss
 COMPASS_FLTR_RNG,0                 # 滤波范围
 COMPASS_OPTIONS,0                  # 罗盘选项
 
-# 罗盘电机干扰补偿
-COMPASS_PMOT_EN,0                  # 电机补偿：0=禁用
-COMPASS_MOTCT,0                    # 电机补偿类型
-COMPASS_MOT_X,0                    # 电机补偿系数X
-COMPASS_MOT_Y,0
-COMPASS_MOT_Z,0
-COMPASS_MOT2_X,0
-COMPASS_MOT2_Y,0
-COMPASS_MOT2_Z,0
-COMPASS_MOT3_X,0
-COMPASS_MOT3_Y,0
-COMPASS_MOT3_Z,0
-
-# 罗盘比例因子（通常为0，禁用）
-COMPASS_SCALE,0
-COMPASS_SCALE2,0
-COMPASS_SCALE3,0
-
-# --- 遥控器配置 ---
-# 通道映射
-RCMAP_ROLL,1                       # Roll → 通道1
-RCMAP_PITCH,2                      # Pitch → 通道2
-RCMAP_THROTTLE,3                   # Throttle → 通道3
-RCMAP_YAW,4                        # Yaw → 通道4
-
-# 遥控器协议
-RC_PROTOCOLS,1                     # 遥控协议：1=All（自动检测PPM/SBUS）
-RC_OPTIONS,32                      # 遥控选项
-RC_SPEED,490                       # PWM刷新率 Hz
-RC_OVERRIDE_TIME,3                 # 覆盖超时 s
-RC_FS_TIMEOUT,1                    # 失控超时 s
-
-# 飞行模式通道
-FLTMODE_CH,5                       # 飞行模式开关：通道5
-FLTMODE_GCSBLOCK,0                 # 地面站模式切换阻止
-
-# 飞行模式定义
-FLTMODE1,0                         # 模式1：0=Stabilize（手动稳定）
-FLTMODE2,2                         # 模式2：2=AltHold（定高）
-FLTMODE3,16                        # 模式3：16=PosHold（定点悬停）
-FLTMODE4,16                        # 模式4：16=PosHold（重复，可改为Auto=3）
-FLTMODE5,6                         # 模式5：6=RTL（返航）
-FLTMODE6,6                         # 模式6：6=RTL（重复，可改为Land=9）
-
-# 初始模式
-INITIAL_MODE,0                     # 启动模式：0=Stabilize
 
 # --- 串口配置 ---
 SERIAL0_PROTOCOL,2                 # USB串口：2=MAVLink2（QGC）
@@ -473,15 +490,7 @@ BARO_EXT_BUS,-1                    # 外部气压计总线
 BARO_GND_TEMP,0                    # 地面温度（0=自动）
 BARO_FIELD_ELV,0                   # 机场海拔 m
 
-# --- 气压计设备ID（仿真时忽略）---
-BARO1_DEVID,292369                 # 气压计1设备ID（实机硬件识别码）
-BARO2_DEVID,1074177                # 气压计2设备ID
-BARO3_DEVID,0
 
-# 气压计校准启用（禁用补偿）
-BARO1_WCF_ENABLE,0                 # 风补偿：0=禁用
-BARO2_WCF_ENABLE,0
-BARO3_WCF_ENABLE,0
 
 # --- AHRS（姿态航向参考系统）---
 AHRS_EKF_TYPE,3                    # EKF类型：3=EKF3
@@ -531,118 +540,6 @@ NTF_LED_OVERRIDE,0                 # LED覆盖
 NTF_BUZZ_PIN,-1                    # 蜂鸣器引脚（-1=板载）
 NTF_BUZZ_VOLUME,100                # 蜂鸣器音量
 
-# --- 遥控器通道详细配置（来自实机）---
-RC1_MIN,1025
-RC1_MAX,2004
-RC1_TRIM,1515
-RC1_DZ,20
-RC1_OPTION,0
-RC1_REVERSED,0
-
-RC2_MIN,1025
-RC2_MAX,2003
-RC2_TRIM,1513
-RC2_DZ,20
-RC2_OPTION,0
-RC2_REVERSED,1                     # 通道2反向（实机设置）
-
-RC3_MIN,1025
-RC3_MAX,2004
-RC3_TRIM,1505
-RC3_DZ,30
-RC3_OPTION,0
-RC3_REVERSED,0
-
-RC4_MIN,1025
-RC4_MAX,2004
-RC4_TRIM,1515
-RC4_DZ,20
-RC4_OPTION,0
-RC4_REVERSED,0
-
-RC5_MIN,1078
-RC5_MAX,2004
-RC5_TRIM,1078
-RC5_DZ,0
-RC5_OPTION,0
-RC5_REVERSED,0
-
-RC6_MIN,1100
-RC6_MAX,1900
-RC6_TRIM,1500
-RC6_DZ,0
-RC6_OPTION,0
-RC6_REVERSED,0
-
-RC7_MIN,1025
-RC7_MAX,2004
-RC7_TRIM,1025
-RC7_DZ,0
-RC7_OPTION,0
-RC7_REVERSED,0
-
-RC8_MIN,1025
-RC8_MAX,2004
-RC8_TRIM,1025
-RC8_DZ,0
-RC8_OPTION,18                      # 通道8功能：18=Arm/Disarm
-RC8_REVERSED,0
-
-RC9_MIN,1025
-RC9_MAX,2004
-RC9_TRIM,1025
-RC9_DZ,0
-RC9_OPTION,0
-RC9_REVERSED,0
-
-RC10_MIN,1025
-RC10_MAX,2004
-RC10_TRIM,1025
-RC10_DZ,0
-RC10_OPTION,0
-RC10_REVERSED,0
-
-RC11_MIN,1100
-RC11_MAX,1900
-RC11_TRIM,1500
-RC11_DZ,0
-RC11_OPTION,0
-RC11_REVERSED,0
-
-RC12_MIN,1100
-RC12_MAX,1900
-RC12_TRIM,1500
-RC12_DZ,0
-RC12_OPTION,0
-RC12_REVERSED,0
-
-RC13_MIN,1100
-RC13_MAX,1900
-RC13_TRIM,1500
-RC13_DZ,0
-RC13_OPTION,0
-RC13_REVERSED,0
-
-RC14_MIN,1100
-RC14_MAX,1900
-RC14_TRIM,1500
-RC14_DZ,0
-RC14_OPTION,0
-RC14_REVERSED,0
-
-RC15_MIN,1100
-RC15_MAX,1900
-RC15_TRIM,1500
-RC15_DZ,0
-RC15_OPTION,0
-RC15_REVERSED,0
-
-RC16_MIN,1100
-RC16_MAX,1900
-RC16_TRIM,1500
-RC16_DZ,0
-RC16_OPTION,0
-RC16_REVERSED,0
 
 # --- MAVLink数据流速率 ---
 # SERIAL0（USB）
@@ -681,353 +578,18 @@ SR2_RC_CHAN,0
 SR2_ADSB,0
 SR2_PARAMS,0
 
-# SERIAL3-6（类似配置，略）
-SR3_EXT_STAT,2
-SR3_EXTRA1,2
-SR3_EXTRA2,2
-SR3_EXTRA3,2
-SR3_POSITION,2
-SR3_RAW_CTRL,2
-SR3_RAW_SENS,2
-SR3_RC_CHAN,2
-SR3_ADSB,0
-SR3_PARAMS,0
-
-SR4_EXT_STAT,0
-SR4_EXTRA1,0
-SR4_EXTRA2,0
-SR4_EXTRA3,0
-SR4_POSITION,0
-SR4_RAW_CTRL,0
-SR4_RAW_SENS,0
-SR4_RC_CHAN,0
-SR4_ADSB,0
-SR4_PARAMS,0
-
-SR5_EXT_STAT,0
-SR5_EXTRA1,0
-SR5_EXTRA2,0
-SR5_EXTRA3,0
-SR5_POSITION,0
-SR5_RAW_CTRL,0
-SR5_RAW_SENS,0
-SR5_RC_CHAN,0
-SR5_ADSB,0
-SR5_PARAMS,0
-
-SR6_EXT_STAT,0
-SR6_EXTRA1,0
-SR6_EXTRA2,0
-SR6_EXTRA3,0
-SR6_POSITION,0
-SR6_RAW_CTRL,0
-SR6_RAW_SENS,0
-SR6_RC_CHAN,0
-SR6_ADSB,0
-SR6_PARAMS,0
-
-# --- 其他硬件功能（大多禁用）---
-# CAN总线
-CAN_LOGLEVEL,0
-CAN_P1_DRIVER,0                    # CAN1驱动：0=禁用
-CAN_P2_DRIVER,0                    # CAN2驱动：0=禁用
-CAN_D1_PROTOCOL,1
-CAN_D1_PROTOCOL2,0
-CAN_D2_PROTOCOL,1
-CAN_D2_PROTOCOL2,0
-CAN_SLCAN_CPORT,0
-CAN_SLCAN_SERNUM,-1
-CAN_SLCAN_TIMOUT,0
-CAN_SLCAN_SDELAY,1
-
-# 测距仪
-RNGFND1_TYPE,0                     # 测距仪1：0=禁用
-RNGFND2_TYPE,0
-RNGFND3_TYPE,0
-RNGFND4_TYPE,0
-RNGFND5_TYPE,0
-RNGFND6_TYPE,0
-RNGFND7_TYPE,0
-RNGFND8_TYPE,0
-RNGFND9_TYPE,0
-RNGFNDA_TYPE,0
-RNGFND_FILT,0.5                    # 测距仪滤波
-
-# 云台
-CAM_RC_TYPE,0                      # 相机遥控：0=禁用
-CAM_AUTO_ONLY,0
-CAM_MAX_ROLL,0
-CAM1_TYPE,0                        # 相机1：0=禁用
-CAM2_TYPE,0
-MNT1_TYPE,0                        # 云台1：0=禁用
-MNT2_TYPE,0
-
-# 光流
-FLOW_TYPE,0                        # 光流：0=禁用
-
-# 避障
-AVOID_ENABLE,3                     # 避障：3=启用（停止+方向避障）
-AVOID_MARGIN,2                     # 避障余量 m
-AVOID_BEHAVE,0                     # 避障行为
-AVOID_ACCEL_MAX,3                  # 最大避障加速度 m/s²
-AVOID_BACKUP_SPD,0.75              # 后退速度 m/s
-AVOID_BACKZ_SPD,0.75               # 垂直后退速度
-AVOID_BACKUP_DZ,0.1                # 后退死区
-AVOID_ANGLE_MAX,1000               # 最大避障角 cdeg
-AVOID_DIST_MAX,5                   # 最大避障距离 m
-AVOID_ALT_MIN,0                    # 最小避障高度 m
-AVD_ENABLE,0                       # AirSim避障：0=禁用
-
-# 接近传感器
-PRX1_TYPE,0                        # 接近传感器1：0=禁用
-PRX2_TYPE,0
-PRX3_TYPE,0
-PRX_LOG_RAW,0
-PRX_FILT,0.25
-PRX_IGN_GND,0
-PRX_ALT_MIN,1
-
-# 精准降落
-PLND_ENABLED,0                     # 精准降落：0=禁用
-PLDP_THRESH,0.9
-PLDP_SPEED_DN,0
-PLDP_RNG_MIN,0
-PLDP_DELAY,0
-
-# 信标
-BCN_TYPE,0                         # 信标：0=禁用
-
-# ADS-B
-ADSB_TYPE,0                        # ADS-B：0=禁用
-
-# RPM传感器
-RPM1_TYPE,0                        # RPM1：0=禁用
-RPM2_TYPE,0
-
-# RSSI
-RSSI_TYPE,0                        # RSSI：0=禁用
-
-# 按钮
-BTN_ENABLE,0                       # 按钮：0=禁用
-
-# 继电器
-RELAY1_FUNCTION,0                  # 继电器1：0=禁用
-RELAY2_FUNCTION,0
-RELAY3_FUNCTION,0
-RELAY4_FUNCTION,0
-RELAY5_FUNCTION,0
-RELAY6_FUNCTION,0
-
-# 降落伞
-CHUTE_ENABLED,0                    # 降落伞：0=禁用
-
-# 喷雾器
-SPRAY_ENABLE,0                     # 喷雾器：0=禁用
-
-# 绞盘
-WINCH_TYPE,0                       # 绞盘：0=禁用
-
-# 机械爪
-GRIP_ENABLE,0                      # 机械爪：0=禁用
-
-# 发电机
-GEN_TYPE,0                         # 发电机：0=禁用
-
-# EFI（电喷）
-EFI_TYPE,0                         # EFI：0=禁用
-
-# 外部AHRS
-EAHRS_TYPE,0                       # 外部AHRS：0=禁用
-
-# 视觉里程计
-VISO_TYPE,0                        # 视觉里程计：0=禁用
-
-# 地形数据
-TERRAIN_ENABLE,1                   # 地形：1=启用
-TERRAIN_SPACING,100                # 地形间距 m
-TERRAIN_OPTIONS,0                  # 地形选项
-TERRAIN_MARGIN,0.05                # 地形余量
-TERRAIN_OFS_MAX,30                 # 最大偏移 m
-
-# MSP（MultiWii串行协议）
-MSP_OPTIONS,0
-MSP_OSD_NCELLS,0
-
-# OSD
-OSD_TYPE,0                         # OSD：0=禁用
-
-# VTX
-VTX_ENABLE,0                       # VTX：0=禁用
-
-# 网络
-NET_ENABLE,0                       # 网络：0=禁用
-NET_P1_TYPE,0
-NET_P2_TYPE,0
-NET_P3_TYPE,0
-NET_P4_TYPE,0
-
-# FrSky遥测
-FRSKY_UPLINK_ID,13
-FRSKY_DNLINK_ID,27
-FRSKY_DNLINK1_ID,20
-FRSKY_DNLINK2_ID,7
-FRSKY_OPTIONS,0
-
-# NMEA输出
-NMEA_MSG_EN,3
-NMEA_RATE_MS,100
-
-# Scripting（Lua脚本）
-SCR_ENABLE,0                       # Scripting：0=禁用
-
 # FFT分析
 FFT_ENABLE,1                       # FFT：0=禁用
 FFT_SAMPLEo_MODE,2                 # 对比前后滤波频谱
 
-# 开发选项
-DEV_OPTIONS,0
-
-# 自定义旋转
-CUST_ROT_ENABLE,0
-
-# 飞行选项
-FLIGHT_OPTIONS,0
-
-# 系统ID
-SYSID_THISMAV,1                    # 本机MAV ID
-SYSID_MYGCS,255                    # 地面站ID
-SYSID_ENFORCE,0                    # 强制系统ID检查
-
-# 遥测延迟
-TELEM_DELAY,0                      # 遥测启动延迟 s
-
-# 格式版本
-FORMAT_VERSION,120                 # 参数格式版本
-
-# 统计信息（实机数据，仿真忽略）
-STAT_BOOTCNT,8                     # 启动次数
-STAT_FLTTIME,3                     # 飞行时间 min
-STAT_RUNTIME,1758                  # 运行时间 min
-STAT_RESET,1                       # 统计复位
 
 # ============================================================================
-# 第二部分：传感器校准参数（来源于实机）
+# 第二部分：传感器校准参数
 # ============================================================================
-# ⚠️ 警告：这些参数是实机传感器校准后的结果，具有唯一性
-# SITL仿真时这些参数会被忽略，使用模拟传感器数据
+# SITL仿真时使用模拟传感器数据
 # 真机移植时必须重新校准，不可直接复用
 
-# --- 罗盘校准数据 ---
-# 罗盘设备ID（硬件识别码）
-COMPASS_DEV_ID,658953              # 罗盘1设备ID（实机GPS模块集成罗盘）
-COMPASS_DEV_ID2,331777             # 罗盘2设备ID（实机板载罗盘）
-COMPASS_DEV_ID3,0
-COMPASS_DEV_ID4,0
-COMPASS_DEV_ID5,0
-COMPASS_DEV_ID6,0
-COMPASS_DEV_ID7,0
-COMPASS_DEV_ID8,0
 
-# 罗盘1校准值（外置罗盘，主罗盘）
-COMPASS_OFS_X,30.82134             # X轴硬铁偏移 mGauss
-COMPASS_OFS_Y,-0.2560618           # Y轴硬铁偏移
-COMPASS_OFS_Z,11.47256             # Z轴硬铁偏移
-COMPASS_DIA_X,1.036268             # X轴软铁校正（椭球直径比例）
-COMPASS_DIA_Y,0.9466786            # Y轴软铁校正
-COMPASS_DIA_Z,1.05717              # Z轴软铁校正
-COMPASS_ODI_X,0.01305587           # X轴干扰补偿（电机磁场）
-COMPASS_ODI_Y,0.06158888           # Y轴干扰补偿
-COMPASS_ODI_Z,-0.05629365          # Z轴干扰补偿
-
-# 罗盘2校准值（板载罗盘，备份，未启用）
-COMPASS_OFS2_X,47.01627
-COMPASS_OFS2_Y,29.50661
-COMPASS_OFS2_Z,-242.3585
-COMPASS_DIA2_X,1                   # 未进行软铁校正
-COMPASS_DIA2_Y,1
-COMPASS_DIA2_Z,1
-COMPASS_ODI2_X,0
-COMPASS_ODI2_Y,0
-COMPASS_ODI2_Z,0
-
-# 罗盘3（未使用）
-COMPASS_OFS3_X,0
-COMPASS_OFS3_Y,0
-COMPASS_OFS3_Z,0
-COMPASS_DIA3_X,1
-COMPASS_DIA3_Y,1
-COMPASS_DIA3_Z,1
-COMPASS_ODI3_X,0
-COMPASS_ODI3_Y,0
-COMPASS_ODI3_Z,0
-
-# 罗盘优先级
-COMPASS_PRIO1_ID,658953            # 主罗盘（外置GPS罗盘）
-COMPASS_PRIO2_ID,331777            # 备份罗盘（板载）
-COMPASS_PRIO3_ID,0
-
-# --- 加速度计校准数据 ---
-# 加速度计设备ID
-INS_ACC_ID,3866898                 # 加速度计1设备ID（ICM-42688-P）
-INS_ACC2_ID,3866906                # 加速度计2设备ID（ICM-42688-P）
-INS_ACC3_ID,3866890                # 加速度计3设备ID（ICM-20649）
-
-# 加速度计1校准值
-INS_ACCOFFS_X,-0.03172194          # X轴零偏 m/s²
-INS_ACCOFFS_Y,0.08330267           # Y轴零偏
-INS_ACCOFFS_Z,-0.08217716          # Z轴零偏
-INS_ACCSCAL_X,1                    # X轴尺度因子（已归一化）
-INS_ACCSCAL_Y,1
-INS_ACCSCAL_Z,1
-INS_ACC1_CALTEMP,37.3125           # 校准时温度 ℃
-
-# 加速度计2校准值
-INS_ACC2OFFS_X,-0.02774787
-INS_ACC2OFFS_Y,0.08109197
-INS_ACC2OFFS_Z,-0.0352211
-INS_ACC2SCAL_X,1
-INS_ACC2SCAL_Y,1
-INS_ACC2SCAL_Z,1
-INS_ACC2_CALTEMP,37.5625
-
-# 加速度计3校准值
-INS_ACC3OFFS_X,-0.0100696
-INS_ACC3OFFS_Y,0.0006745777
-INS_ACC3OFFS_Z,0.04773426
-INS_ACC3SCAL_X,1
-INS_ACC3SCAL_Y,1
-INS_ACC3SCAL_Z,1
-INS_ACC3_CALTEMP,29.8125
-
-# --- 陀螺仪校准数据 ---
-# 陀螺仪设备ID
-INS_GYR_ID,3866898                 # 陀螺仪1设备ID
-INS_GYR2_ID,3866906                # 陀螺仪2设备ID
-INS_GYR3_ID,3866890                # 陀螺仪3设备ID
-
-# 陀螺仪1校准值
-INS_GYROFFS_X,-0.008176878         # X轴零偏 rad/s
-INS_GYROFFS_Y,0.001784491          # Y轴零偏
-INS_GYROFFS_Z,-0.005390862         # Z轴零偏
-INS_GYR1_CALTEMP,33.28125          # 校准时温度 ℃
-
-# 陀螺仪2校准值
-INS_GYR2OFFS_X,0.009324571
-INS_GYR2OFFS_Y,0.002992499
-INS_GYR2OFFS_Z,0.002770392
-INS_GYR2_CALTEMP,33.40625
-
-# 陀螺仪3校准值
-INS_GYR3OFFS_X,0.000123713
-INS_GYR3OFFS_Y,-0.009068614
-INS_GYR3OFFS_Z,-0.0001455593
-INS_GYR3_CALTEMP,30.0625
-
-# --- 气压计校准数据 ---
-# 气压计地面气压（启动时自动测量）
-BARO1_GND_PRESS,101916.2           # 气压计1地面气压 Pa（实机现场测量）
-BARO2_GND_PRESS,101775.2           # 气压计2地面气压 Pa
-BARO3_GND_PRESS,0
 
 # ============================================================================
 # 第三部分：EKF融合参数（保留实机优化值）
