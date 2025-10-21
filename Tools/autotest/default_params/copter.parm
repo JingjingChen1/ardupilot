@@ -866,9 +866,14 @@ FILT8_TYPE,0                        # 滤波器类型8
 # 调试方法：逐步增大P值直到出现高频震荡，回退20%
 
 # --- Roll角速度环 ---
+#ATC_RAT_RLL_P,0.035                # Roll角速度P
+#ATC_RAT_RLL_I,0.001                # Roll角速度I
+#ATC_RAT_RLL_D,0.0036               # Roll角速度D
+#实机
 ATC_RAT_RLL_P,0.135                # Roll角速度P
 ATC_RAT_RLL_I,0.135                # Roll角速度I
 ATC_RAT_RLL_D,0.0036               # Roll角速度D
+
 ATC_RAT_RLL_IMAX,0.5               # Roll角速度I最大
 ATC_RAT_RLL_FF,0                   # Roll角速度前馈
 ATC_RAT_RLL_FLTD,20.0              # Roll角速度D滤波
@@ -881,9 +886,14 @@ ATC_RAT_RLL_NTF,0                  # Roll角速度NTF
 ATC_RAT_RLL_NEF,0                  # Roll角速度NEF
 
 # --- Pitch角速度环 ---
-ATC_RAT_PIT_P,0.135                # Pitch角速度P
-ATC_RAT_PIT_I,0.135                # Pitch角速度I
-ATC_RAT_PIT_D,0.0036               # Pitch角速度D
+#ATC_RAT_PIT_P,0.035                # Pitch角速度P
+#ATC_RAT_PIT_I,0.001                # Pitch角速度I
+#ATC_RAT_PIT_D,0.0036              # Pitch角速度D
+#实机
+ATC_RAT_PIT_P,0.135
+ATC_RAT_PIT_I,0.135
+ATC_RAT_PIT_D,0.0036
+
 ATC_RAT_PIT_IMAX,0.5               # Pitch角速度I最大
 ATC_RAT_PIT_FF,0                   # Pitch角速度前馈
 ATC_RAT_PIT_FLTD,20.0              # Pitch角速度D滤波
@@ -896,9 +906,14 @@ ATC_RAT_PIT_NTF,0                  # Pitch角速度NTF
 ATC_RAT_PIT_NEF,0                  # Pitch角速度NEF
 
 # --- Yaw角速度环 ---
-ATC_RAT_YAW_P,0.18                 # Yaw角速度P
-ATC_RAT_YAW_I,0.018                # Yaw角速度I
-ATC_RAT_YAW_D,0                    # Yaw角速度D
+#ATC_RAT_YAW_P,0.02                 # Yaw角速度P
+#ATC_RAT_YAW_I,0.001                # Yaw角速度I
+#ATC_RAT_YAW_D,0                    # Yaw角速度D
+#实机
+ATC_RAT_YAW_P,0.38
+ATC_RAT_YAW_I,0.018
+ATC_RAT_YAW_D,0
+
 ATC_RAT_YAW_IMAX,0.5               # Yaw角速度I最大
 ATC_RAT_YAW_FF,0                   # Yaw角速度前馈
 ATC_RAT_YAW_FLTD,20.0              # Yaw角速度D滤波
