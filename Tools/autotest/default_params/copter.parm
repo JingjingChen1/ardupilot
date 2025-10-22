@@ -1,15 +1,8 @@
-# MOT_THST_EXPO   0.65
-# MOT_THST_HOVER  0.39
-# MOT_BAT_VOLT_MIN 9.6
-# MOT_BAT_VOLT_MAX 12.8
--------------------------------------
+FRAME_TYPE	1
 FS_THR_ENABLE   1
 ARSPD_PIN 1
 ARSPD_BUS 2
 BATT_MONITOR    4
-FENCE_RADIUS    150
-SIM_BARO_RND    0
-
 COMPASS_OFS_X   5
 COMPASS_OFS_Y   13
 COMPASS_OFS_Z   -18
@@ -19,7 +12,8 @@ COMPASS_OFS2_Z   -18
 COMPASS_OFS3_X   5
 COMPASS_OFS3_Y   13
 COMPASS_OFS3_Z   -18
-
+FENCE_RADIUS    150
+FRAME_CLASS     1
 RC1_MAX         2000.000000
 RC1_MIN         1000.000000
 RC1_TRIM        1500.000000
@@ -50,8 +44,8 @@ FLTMODE2        9
 FLTMODE3        6
 FLTMODE4        3
 FLTMODE5        5
-FLTMODE6        0
-
+FLTMODE6		0
+SIM_BARO_RND    0
 # we need small INS_ACC offsets so INS is recognised as being calibrated
 INS_ACCOFFS_X   0.001
 INS_ACCOFFS_Y   0.001
@@ -71,7 +65,10 @@ INS_ACC3OFFS_Z   0.000
 INS_ACC3SCAL_X   1.000
 INS_ACC3SCAL_Y   1.000
 INS_ACC3SCAL_Z   1.000
-
+MOT_THST_EXPO   0.65
+MOT_THST_HOVER  0.39
+MOT_BAT_VOLT_MIN 9.6
+MOT_BAT_VOLT_MAX 12.8
 # flightmodes
 # switch 1 Circle
 # switch 2 LAND
@@ -91,233 +88,13 @@ INS_ACC3SCAL_Z   1.000
 # LAND 			9 !
 
 
+
 # chenjingjing
 # ============================================================================
-# SITL仿真专用物理参数（真机飞行时删除此部分）
+# SITL仿真专用
 # ============================================================================
-# 说明：这些参数仅用于仿真环境，定义飞机的物理特性和传感器噪声
-# 真机使用实际传感器数据，不需要这些参数
 
-# --- 机体物理特性 ---
-SIM_MASS,1.5                       # 机体质量(kg)
-SIM_ROLL_INERTIA,0.0125            # 横滚惯性(kg*m^2)
-SIM_PITCH_INERTIA,0.0125           # 俯仰惯性(kg*m^2)
-SIM_YAW_INERTIA,0.0230             # 偏航惯性(kg*m^2)
-SIM_WHEELBASE,0.5                  # 轴距(m)
-
-# --- 重心位置（相对飞控） ---
-SIM_CG_X,0.0                       # 重心X(m)
-SIM_CG_Y,0.0                       # 重心Y(m)
-SIM_CG_Z,0.02                      # 重心Z(m)
-
-# --- 螺旋桨参数 ---
-SIM_PROP_DIAMETER,9.5              # 螺旋桨直径(inch)
-SIM_PROP_PITCH,4.5                 # 螺旋桨螺距(inch)
-
-
-# --- 电机仿真 ---
-SIM_MOTOR_HOVER,0.356               # 悬停油门
-SIM_ENGINE_MUL,1.0                 # 电机推力系数
-
-# --- 气动阻力系数 ---
-SIM_DRAG_X,0.08                    # X轴阻力
-SIM_DRAG_Y,0.08                    # Y轴阻力
-SIM_DRAG_Z,0.15                    # Z轴阻力
-
-# --- 地面效应 ---
-SIM_GND_EFFECT,1.0                 # 地面效应系数
-SIM_GND_HGT,1.5                    # 地面效应高度(m)
-
-# --- SITL电池仿真 ---
-SIM_BATT_VOLTAGE,12.6              # 电池电压(V)
-SIM_BATT_CAP_AH,10.0               # 电池容量(Ah)
-SIM_BATT_RESISTANCE,0.01           # 电池内阻(ohm)
-
-
-# ============================================================================
-# 第一部分：硬件配置参数（来源于实机参数文件）
-# ============================================================================
-# 说明：这些参数定义了飞机的硬件拓扑和基本配置
-
-# --- 机架定义 ---
-FRAME_CLASS     1                      # 机架类型
-FRAME_TYPE      1                      # 机型类型
-
-# --- 电机与ESC配置 ---
-MOT_PWM_TYPE    0                      # PWM类型
-MOT_PWM_MIN     1000                   # PWM最小值
-MOT_PWM_MAX     2000                   # PWM最大值
-MOT_SPIN_MIN    0.15                   # 最小转速
-MOT_SPIN_MAX    0.95                   # 最大转速
-MOT_SPIN_ARM    0                      # 解锁转速
-MOT_SPOOL_TIME  0.5                    # 电机加速时间
-MOT_SLEW_UP_TIME 0                     # 上升斜率限制
-MOT_SLEW_DN_TIME 0                     # 下降斜率限制
-MOT_THST_EXPO   0.65                   # 油门曲线指数
-MOT_YAW_HEADROOM 200                   # 偏航余量
-MOT_SAFE_DISARM 0                      # 安全解锁
-MOT_SAFE_TIME   1                      # 安全时间
-MOT_OPTIONS     0                      # 电机选项
-MOT_BOOST_SCALE 0                      # 推力提升比例
-
-# 电机输出通道映射（X型四旋翼）
-SERVO1_FUNCTION 33                     # 电机1功能
-SERVO1_MIN      1100
-SERVO1_MAX      1900
-SERVO1_TRIM     1500
-SERVO1_REVERSED 0
-
-SERVO2_FUNCTION 34                     # 电机2功能
-SERVO2_MIN      1100
-SERVO2_MAX      1900
-SERVO2_TRIM     1500
-SERVO2_REVERSED 0
-
-SERVO3_FUNCTION 35                     # 电机3功能
-SERVO3_MIN      1100
-SERVO3_MAX      1900
-SERVO3_TRIM     1500
-SERVO3_REVERSED 0
-
-SERVO4_FUNCTION 36                     # 电机4功能
-SERVO4_MIN      1100
-SERVO4_MAX      1900
-SERVO4_TRIM     1500
-SERVO4_REVERSED 0
-
-# 其他输出通道（未使用）
-SERVO5_FUNCTION 0
-SERVO6_FUNCTION 0
-SERVO7_FUNCTION 0
-SERVO8_FUNCTION 0
-SERVO9_FUNCTION 0
-SERVO10_FUNCTION 0
-SERVO11_FUNCTION 0
-SERVO12_FUNCTION 0
-SERVO13_FUNCTION 0
-SERVO14_FUNCTION 0
-SERVO15_FUNCTION 0
-SERVO16_FUNCTION 0
-
-# 舵机刷新率
-SERVO_RATE      50                     # 舵机刷新率
-SERVO_DSHOT_RATE 0
-SERVO_RC_FS_MSK 0
-
-# --- 电池监测配置---
-BATT_CAPACITY   10000                  # 电池容量
-BATT_MAX_AMPS   90                     # 最大电流
-
-# 电池电压保护阈值
-BATT_LOW_VOLT   10.5                   # 低电压报警
-BATT_CRT_VOLT   9.9                    # 临界电压
-BATT_LOW_MAH    2000                   # 低容量报警
-BATT_CRT_MAH    1000                   # 临界容量
-BATT_LOW_TIMER  10                     # 低电压报警延时
-
-BATT_ARM_VOLT   0
-BATT_ARM_MAH    0
-BATT_FS_LOW_ACT 0
-BATT_FS_CRT_ACT 0
-BATT_FS_VOLTSRC 0
-BATT_OPTIONS    0
-BATT_SERIAL_NUM -1
-
-# 电池电压电流比例（PM07默认值，通常无需修改）
-MOT_BAT_VOLT_MAX 12.8                  # 电池最大电压
-MOT_BAT_VOLT_MIN 9.6                   # 电池最小电压
-MOT_BAT_CURR_MAX 0
-MOT_BAT_CURR_TC  5
-MOT_BAT_IDX      0
-
-
-# --- GPS配置 ---
-GPS_TYPE        1                      # GPS类型
-GPS_TYPE2       0
-GPS_AUTO_CONFIG 1
-GPS_AUTO_SWITCH 1
-GPS_BLEND_MASK  5
-GPS_NAVFILTER   8
-GPS_RATE_MS     200
-GPS_RATE_MS2    200
-GPS_DELAY_MS    0
-GPS_DELAY_MS2   0
-GPS_HDOP_GOOD   140
-GPS_MIN_DGPS    100
-GPS_MIN_ELEV    -100
-GPS_PRIMARY     0
-GPS_SAVE_CFG    2
-GPS_SBAS_MODE   2
-GPS_GNSS_MODE   0
-GPS_GNSS_MODE2  0
-GPS_DRV_OPTIONS 0
-GPS_RAW_DATA    0
-GPS_INJECT_TO   127
-GPS_SBP_LOGMASK -256
-
-# --- 罗盘配置（硬件定义部分）---
-COMPASS_ENABLE  1                      # 启用罗盘
-COMPASS_EXTERNAL 1
-COMPASS_ORIENT  6
-COMPASS_ORIENT2 0
-COMPASS_ORIENT3 0
-COMPASS_USE     1
-COMPASS_USE2    0
-COMPASS_USE3    0
-COMPASS_DISBLMSK 0
-
-# 罗盘学习和自动旋转
-COMPASS_LEARN   0
-COMPASS_AUTO_ROT 2
-COMPASS_AUTODEC 1
-COMPASS_DEC     0
-
-# 罗盘校准参数（高级）
-COMPASS_CAL_FIT 16
-COMPASS_OFFS_MAX 1800
-COMPASS_FLTR_RNG 0
-COMPASS_OPTIONS 0
-
-# --- 安全与保护 ---
-
-# --- 降落配置 ---
-LAND_SPEED      50
-LAND_SPEED_HIGH 0
-LAND_ALT_LOW    1000
-LAND_REPOSITION 1
-
-# --- 起飞配置 ---
-PILOT_TKOFF_ALT 0
-TKOFF_SLEW_TIME 2
-TKOFF_THR_MAX   0.9
-TKOFF_RPM_MIN   0
-TKOFF_RPM_MAX   0
-
-# --- 板载硬件配置 ---
-BRD_TYPE        43
-BRD_OPTIONS     1
-BRD_BOOT_DELAY  0
-BRD_SERIAL_NUM  0
-BRD_VBUS_MIN    4.3
-BRD_VSERVO_MIN  0
-BRD_IO_ENABLE   1
-BRD_IO_DSHOT    0
-BRD_SBUS_OUT    0
-BRD_RTC_TYPES   1
-BRD_RTC_TZ_MIN  0
-BRD_SER1_RTSCTS 2
-BRD_SER2_RTSCTS 2
-BRD_SER5_RTSCTS 2
-BRD_SD_SLOWDOWN 0
-BRD_SD_MISSION  0
-BRD_SD_FENCE    0
-
-# 板载加热器（IMU温度控制）
-BRD_HEAT_TARG   45
-BRD_HEAT_P      50
-BRD_HEAT_I      0.07
-BRD_HEAT_IMAX   70
-BRD_HEAT_LOWMGN 0
+SIM_SPEEDUP      1.0
 
 # IMU日志记录
 INS_LOG_BAT_MASK 3
@@ -326,33 +103,6 @@ INS_LOG_BAT_LGCT 32
 INS_LOG_BAT_LGIN 20
 INS_LOG_BAT_OPT  4
 INS_RAW_LOG_OPT  0
-
-# 谐波陷波器（动态滤波，禁用）
-INS_HNTCH_ENABLE 0
-INS_HNTC2_ENABLE 0
-
-# --- 气压计配置 ---
-BARO_PRIMARY    0
-BARO_ALT_OFFSET 0
-BARO_OPTIONS    0
-BARO_FLTR_RNG   0
-BARO_ALTERR_MAX 2000
-BARO_PROBE_EXT  0
-BARO_EXT_BUS    -1
-BARO_GND_TEMP   0
-BARO_FIELD_ELV  0
-
-# --- AHRS（姿态航向参考系统）---
-AHRS_EKF_TYPE   3
-AHRS_GPS_GAIN   1
-AHRS_GPS_USE    1
-AHRS_GPS_MINSATS 6
-AHRS_COMP_BETA  0.1
-AHRS_RP_P       0.2
-AHRS_YAW_P      0.2
-AHRS_WIND_MAX   0
-AHRS_ORIENTATION 0
-AHRS_OPTIONS    0
 
 # --- 日志记录 ---
 LOG_BACKEND_TYPE 1
@@ -373,24 +123,10 @@ LOG_DARM_RATEMAX 0
 FFT_ENABLE      1
 FFT_SAMPLEo_MODE 2
 
-# --------临时---------
-
-# 1. 在驱动层，明确禁用第一个和第二个IMU实例
-INS_USE,0
-INS_USE2,0
-# 2. 在驱动层，明确启用第三个IMU实例
-INS_USE3,1
-# 3. 告诉EKF3，在所有已启用的IMU中，只使用第三个实例
-# (因为现在只有第三个被启用了，所以掩码必须是4)
-EK3_IMU_MASK,4
 
 # ============================================================================
-# 第五部分：PID控制参数（文件末尾，来源于初始值）
+# PID控制参数
 # ============================================================================
-# ⚠️ 重要说明：
-# - 这些是基于理论计算的初始PID值，适用于首次飞行
-# - 不使用实机调试后的PID值，因为需要通过仿真或实飞重新验证
-# - 对于同型号飞机，可作为调参起点，但仍需微调
 
 # -----------------------------
 # 5.1 姿态角速度控制环（最内环）
@@ -400,64 +136,20 @@ EK3_IMU_MASK,4
 # 调试方法：逐步增大P值直到出现高频震荡，回退20%
 
 # --- Roll角速度环 ---
-ATC_RAT_RLL_P,0.028                # Roll角速度P
+ATC_RAT_RLL_P,0.04                # Roll角速度P
 ATC_RAT_RLL_I,0.001                # Roll角速度I
-ATC_RAT_RLL_D,0.0036               # Roll角速度D
-#实机
-# ATC_RAT_RLL_P,0.135                # Roll角速度P
-# ATC_RAT_RLL_I,0.135                # Roll角速度I
-# ATC_RAT_RLL_D,0.0036               # Roll角速度D
-
-ATC_RAT_RLL_IMAX,0.5               # Roll角速度I最大
-ATC_RAT_RLL_FF,0                   # Roll角速度前馈
-ATC_RAT_RLL_FLTD,20.0              # Roll角速度D滤波
-ATC_RAT_RLL_FLTT,20.0              # Roll角速度T滤波
-ATC_RAT_RLL_FLTE,0                 # Roll角速度E滤波
-ATC_RAT_RLL_SMAX,0                 # Roll角速度最大
-ATC_RAT_RLL_PDMX,0                 # Roll角速度P最大
-ATC_RAT_RLL_D_FF,0                 # Roll角速度D前馈
-ATC_RAT_RLL_NTF,0                  # Roll角速度NTF
-ATC_RAT_RLL_NEF,0                  # Roll角速度NEF
+ATC_RAT_RLL_D,0               # Roll角速度D
 
 # --- Pitch角速度环 ---
-ATC_RAT_PIT_P,0.028                # Pitch角速度P
+ATC_RAT_PIT_P,0.04                # Pitch角速度P
 ATC_RAT_PIT_I,0.001                # Pitch角速度I
-ATC_RAT_PIT_D,0.0036              # Pitch角速度D
-#实机
-# ATC_RAT_PIT_P,0.135
-# ATC_RAT_PIT_I,0.135
-# ATC_RAT_PIT_D,0.0036
-
-ATC_RAT_PIT_IMAX,0.5               # Pitch角速度I最大
-ATC_RAT_PIT_FF,0                   # Pitch角速度前馈
-ATC_RAT_PIT_FLTD,20.0              # Pitch角速度D滤波
-ATC_RAT_PIT_FLTT,20.0              # Pitch角速度T滤波
-ATC_RAT_PIT_FLTE,0                 # Pitch角速度E滤波
-ATC_RAT_PIT_SMAX,0                 # Pitch角速度最大
-ATC_RAT_PIT_PDMX,0                 # Pitch角速度P最大
-ATC_RAT_PIT_D_FF,0                 # Pitch角速度D前馈
-ATC_RAT_PIT_NTF,0                  # Pitch角速度NTF
-ATC_RAT_PIT_NEF,0                  # Pitch角速度NEF
+ATC_RAT_PIT_D,0              # Pitch角速度D
 
 # --- Yaw角速度环 ---
 ATC_RAT_YAW_P,0.02                 # Yaw角速度P
 ATC_RAT_YAW_I,0.001                # Yaw角速度I
 ATC_RAT_YAW_D,0                    # Yaw角速度D
-#实机
-# ATC_RAT_YAW_P,0.38
-# ATC_RAT_YAW_I,0.018
-# ATC_RAT_YAW_D,0
 
-ATC_RAT_YAW_IMAX,0.5               # Yaw角速度I最大
-ATC_RAT_YAW_FF,0                   # Yaw角速度前馈
-ATC_RAT_YAW_FLTD,20.0              # Yaw角速度D滤波
-ATC_RAT_YAW_FLTT,20.0              # Yaw角速度T滤波
-ATC_RAT_YAW_FLTE,2.5               # Yaw角速度E滤波
-ATC_RAT_YAW_SMAX,0                 # Yaw角速度最大
-ATC_RAT_YAW_PDMX,0                 # Yaw角速度P最大
-ATC_RAT_YAW_D_FF,0                 # Yaw角速度D前馈
-ATC_RAT_YAW_NTF,0                  # Yaw角速度NTF
-ATC_RAT_YAW_NEF,0                  # Yaw角速度NEF
 
 # -----------------------------
 # 5.2 姿态角度控制环（中环）
@@ -476,17 +168,6 @@ ATC_ANG_PIT_P,4.5                  # Pitch角度P
 ATC_ANG_YAW_P,4.5                  # Yaw角度P
 
 # --- 整体姿态控制参数 ---
-ATC_INPUT_TC,0.15                  # 输入时间常数
-ATC_ACCEL_R_MAX,110000             # Roll最大加速度
-ATC_ACCEL_P_MAX,110000             # Pitch最大加速度
-ATC_ACCEL_Y_MAX,27000              # Yaw最大加速度
-ATC_RATE_FF_ENAB,1                 # 速率前馈使能
-ATC_RATE_P_MAX,0                   # Pitch速率最大
-ATC_RATE_R_MAX,0                   # Roll速率最大
-ATC_RATE_Y_MAX,0                   # Yaw速率最大
-ATC_SLEW_YAW,6000                  # Yaw斜率
-ATC_ANGLE_BOOST,1                  # 角度提升
-ATC_ANG_LIM_TC,1                   # 角度限制时间常数
 ATC_THR_MIX_MIN,0.1                # 油门混合最小
 ATC_THR_MIX_MAX,0.5                # 油门混合最大
 ATC_THR_MIX_MAN,0.1                # 油门混合手动
@@ -495,24 +176,16 @@ ATC_THR_G_BOOST,0                  # 油门G提升
 # -----------------------------
 # 5.3 位置速度控制环（外环）
 # -----------------------------
-# 说明：GPS/光流模式下的位置和速度控制
 # 调试顺序：最后调整（依赖内环稳定）
 # 调试方法：先调速度环，再调位置环
 
 # --- 水平位置环 ---
 PSC_POSXY_P,1.0                    # 水平位置P
-PSC_ANGLE_MAX,0                    # 最大角度
-PSC_JERK_XY,5                      # XY轴jerk
-PSC_JERK_Z,5                       # Z轴jerk
 
 # --- 水平速度环 ---
 PSC_VELXY_P,2.0                    # 水平速度P
 PSC_VELXY_I,1.0                    # 水平速度I
 PSC_VELXY_D,0.5                    # 水平速度D
-PSC_VELXY_IMAX,1000                # 水平速度I最大
-PSC_VELXY_FF,0                     # 水平速度前馈
-PSC_VELXY_FLTD,5.0                 # 水平速度D滤波
-PSC_VELXY_FLTE,5.0                 # 水平速度E滤波
 
 # --- 垂直位置环（高度）---
 PSC_POSZ_P,1.0                     # 垂直位置P
@@ -530,19 +203,3 @@ PSC_VELZ_FLTE,5.0                  # 垂直速度E滤波
 PSC_ACCZ_P,0.5                     # 高度加速度P
 PSC_ACCZ_I,1.0                     # 高度加速度I
 PSC_ACCZ_D,0                       # 高度加速度D
-PSC_ACCZ_IMAX,800                  # 高度加速度I最大
-PSC_ACCZ_FF,0                      # 高度加速度前馈
-PSC_ACCZ_FLTD,0                    # 高度加速度D滤波
-PSC_ACCZ_FLTE,20.0                 # 高度加速度E滤波
-PSC_ACCZ_FLTT,0                    # 高度加速度T滤波
-PSC_ACCZ_SMAX,0                    # 高度加速度最大
-PSC_ACCZ_PDMX,0                    # 高度加速度P最大
-PSC_ACCZ_D_FF,0                    # 高度加速度D前馈
-PSC_ACCZ_NTF,0                     # 高度加速度NTF
-PSC_ACCZ_NEF,0                     # 高度加速度NEF
-
-# -----------------------------
-# 5.4 悬停油门学习
-# -----------------------------
-MOT_HOVER_LEARN,2                  # 悬停油门学习
-MOT_THST_HOVER,0.356                # 悬停油门，当前值为该仿真配置下计算得出
