@@ -1,98 +1,14 @@
-# FRAME_TYPE	1
-# FS_THR_ENABLE   1
-# ARSPD_PIN 1
-# ARSPD_BUS 2
-# ATC_RAT_YAW_P 0.3
-# ATC_RAT_YAW_I 0.02
-# BATT_MONITOR    4
-# COMPASS_OFS_X   5
-# COMPASS_OFS_Y   13
-# COMPASS_OFS_Z   -18
-# COMPASS_OFS2_X   5
-# COMPASS_OFS2_Y   13
-# COMPASS_OFS2_Z   -18
-# COMPASS_OFS3_X   5
-# COMPASS_OFS3_Y   13
-# COMPASS_OFS3_Z   -18
-# FENCE_RADIUS    150
-# FRAME_CLASS     1
-# RC1_MAX         2000.000000
-# RC1_MIN         1000.000000
-# RC1_TRIM        1500.000000
-# RC2_MAX         2000.000000
-# RC2_MIN         1000.000000
-# RC2_TRIM        1500.000000
-# RC3_MAX         2000.000000
-# RC3_MIN         1000.000000
-# RC3_TRIM        1500.000000
-# RC4_MAX         2000.000000
-# RC4_MIN         1000.000000
-# RC4_TRIM        1500.000000
-# RC5_MAX         2000.000000
-# RC5_MIN         1000.000000
-# RC5_TRIM        1500.000000
-# RC6_MAX         2000.000000
-# RC6_MIN         1000.000000
-# RC6_TRIM        1500.000000
-# RC7_MAX         2000.000000
-# RC7_MIN         1000.000000
-# RC7_OPTION      7
-# RC7_TRIM        1500.000000
-# RC8_MAX         2000.000000
-# RC8_MIN         1000.000000
-# RC8_TRIM        1500.000000
-# FLTMODE1        7
-# FLTMODE2        9
-# FLTMODE3        6
-# FLTMODE4        3
-# FLTMODE5        5
-# FLTMODE6		0
-# SIM_BARO_RND    0
-# we need small INS_ACC offsets so INS is recognised as being calibrated
-# INS_ACCOFFS_X   0.001
-# INS_ACCOFFS_Y   0.001
-# INS_ACCOFFS_Z   0.001
-# INS_ACCSCAL_X   1.001
-# INS_ACCSCAL_Y   1.001
-# INS_ACCSCAL_Z   1.001
-# INS_ACC2OFFS_X   0.001
-# INS_ACC2OFFS_Y   0.001
-# INS_ACC2OFFS_Z   0.001
-# INS_ACC2SCAL_X   1.001
-# INS_ACC2SCAL_Y   1.001
-# INS_ACC2SCAL_Z   1.001
-# INS_ACC3OFFS_X   0.000
-# INS_ACC3OFFS_Y   0.000
-# INS_ACC3OFFS_Z   0.000
-# INS_ACC3SCAL_X   1.000
-# INS_ACC3SCAL_Y   1.000
-# INS_ACC3SCAL_Z   1.000
 # MOT_THST_EXPO   0.65
 # MOT_THST_HOVER  0.39
 # MOT_BAT_VOLT_MIN 9.6
 # MOT_BAT_VOLT_MAX 12.8
-# flightmodes
-# switch 1 Circle
-# switch 2 LAND
-# switch 3 RTL
-# switch 4 Auto
-# switch 5 Loiter
-# switch 6 Stab
-# STABILIZE 	0 !
-# ACRO 			1
-# ALT_HOLD 		2
-# AUTO 			3 !
-# GUIDED 		4
-# LOITER 		5 !
-# RTL 			6 !
-# CIRCLE 		7 !
-# POSITION 		8
-# LAND 			9 !
-
 -------------------------------------
+FS_THR_ENABLE   1
 ARSPD_PIN 1
 ARSPD_BUS 2
 BATT_MONITOR    4
+FENCE_RADIUS    150
+SIM_BARO_RND    0
 
 COMPASS_OFS_X   5
 COMPASS_OFS_Y   13
@@ -198,19 +114,9 @@ SIM_CG_Z,0.02                      # 重心Z(m)
 SIM_PROP_DIAMETER,9.5              # 螺旋桨直径(inch)
 SIM_PROP_PITCH,4.5                 # 螺旋桨螺距(inch)
 
-# --- 传感器噪声仿真（模拟真实传感器特性）---
-SIM_ACC_RND,0.3                    # 加速度计噪声
-SIM_GYR_RND,0.01                   # 陀螺仪噪声
-SIM_BARO_RND,0.5                   # 气压计噪声
-# SIM_BARO_DRIFT,0.02                # 气压计漂移
-SIM_GPS_DELAY,200                  # GPS延迟(ms)
-SIM_GPS_TYPE,1                     # GPS类型
-SIM_GPS_NUMSATS,16                 # GPS卫星数
-SIM_GPS_HACC,1.5                   # GPS水平精度(m)
-SIM_GPS_VACC,2.5                   # GPS垂直精度(m)
 
 # --- 电机仿真 ---
-SIM_MOTOR_HOVER,0.35               # 悬停油门
+SIM_MOTOR_HOVER,0.356               # 悬停油门
 SIM_ENGINE_MUL,1.0                 # 电机推力系数
 
 # --- 气动阻力系数 ---
@@ -226,6 +132,7 @@ SIM_GND_HGT,1.5                    # 地面效应高度(m)
 SIM_BATT_VOLTAGE,12.6              # 电池电压(V)
 SIM_BATT_CAP_AH,10.0               # 电池容量(Ah)
 SIM_BATT_RESISTANCE,0.01           # 电池内阻(ohm)
+
 
 # ============================================================================
 # 第一部分：硬件配置参数（来源于实机参数文件）
@@ -297,7 +204,7 @@ SERVO_RATE      50                     # 舵机刷新率
 SERVO_DSHOT_RATE 0
 SERVO_RC_FS_MSK 0
 
-# --- 电池监测配置（⚠️ 已修改为TATTU 10000mAh）---
+# --- 电池监测配置---
 BATT_CAPACITY   10000                  # 电池容量
 BATT_MAX_AMPS   90                     # 最大电流
 
@@ -323,15 +230,6 @@ MOT_BAT_CURR_MAX 0
 MOT_BAT_CURR_TC  5
 MOT_BAT_IDX      0
 
-# 其他电池监测器（禁用）
-BATT2_MONITOR   0
-BATT3_MONITOR   0
-BATT4_MONITOR   0
-BATT5_MONITOR   0
-BATT6_MONITOR   0
-BATT7_MONITOR   0
-BATT8_MONITOR   0
-BATT9_MONITOR   0
 
 # --- GPS配置 ---
 GPS_TYPE        1                      # GPS类型
@@ -380,98 +278,7 @@ COMPASS_OFFS_MAX 1800
 COMPASS_FLTR_RNG 0
 COMPASS_OPTIONS 0
 
-# --- 串口配置 ---
-SERIAL0_PROTOCOL 2
-SERIAL0_BAUD     115
-
-SERIAL1_PROTOCOL 2
-SERIAL1_BAUD     57
-SERIAL1_OPTIONS  0
-
-SERIAL2_PROTOCOL 2
-SERIAL2_BAUD     57
-SERIAL2_OPTIONS  0
-
-SERIAL3_PROTOCOL 5
-SERIAL3_BAUD     230
-SERIAL3_OPTIONS  0
-
-SERIAL4_PROTOCOL 5
-SERIAL4_BAUD     230
-SERIAL4_OPTIONS  0
-
-SERIAL5_PROTOCOL -1
-SERIAL5_BAUD     57
-SERIAL5_OPTIONS  0
-
-SERIAL6_PROTOCOL -1
-SERIAL6_BAUD     57
-SERIAL6_OPTIONS  0
-
-SERIAL7_PROTOCOL -1
-SERIAL7_BAUD     57
-SERIAL7_OPTIONS  0
-
-SERIAL8_PROTOCOL 2
-SERIAL8_BAUD     115200
-SERIAL8_OPTIONS  0
-
-# 串口透传（用于调试）
-SERIAL_PASS1    0
-SERIAL_PASS2    -1
-SERIAL_PASSTIMO 15
-
 # --- 安全与保护 ---
-# 解锁检查
-ARMING_CHECK    1
-ARMING_ACCTHRESH 0.75
-ARMING_MAGTHRESH 100
-ARMING_RUDDER   2
-ARMING_MIS_ITEMS 0
-ARMING_OPTIONS  0
-ARMING_CRSDP_IGN 0
-
-# 失控保护
-FS_THR_ENABLE   1
-FS_THR_VALUE    975
-FS_GCS_ENABLE   0
-FS_GCS_TIMEOUT  5
-FS_EKF_ACTION   1
-FS_EKF_THRESH   0.8
-FS_EKF_FILT     5
-FS_DR_ENABLE    2
-FS_DR_TIMEOUT   30
-FS_CRASH_CHECK  1
-FS_VIBE_ENABLE  1
-FS_OPTIONS      16
-
-# 电池失控保护（新增）
-BATT_FS_LOW_ACT 0
-BATT_FS_CRT_ACT 0
-BATT_FS_VOLTSRC 0
-
-# 安全开关配置
-BRD_SAFETY_DEFLT 0
-BRD_SAFETY_MASK  16368
-BRD_SAFETYOPTION 3
-
-# 解锁延迟
-DISARM_DELAY    10
-
-# --- 地理围栏 ---
-FENCE_ENABLE    0
-FENCE_TYPE      7
-FENCE_ACTION    1
-FENCE_RADIUS    300
-FENCE_ALT_MAX   100
-FENCE_ALT_MIN   -10
-FENCE_MARGIN    2
-FENCE_TOTAL     0
-
-# --- RALLY点（集结点）---
-RALLY_INCL_HOME 1
-RALLY_LIMIT_KM  0.3
-RALLY_TOTAL     0
 
 # --- 降落配置 ---
 LAND_SPEED      50
@@ -512,37 +319,6 @@ BRD_HEAT_I      0.07
 BRD_HEAT_IMAX   70
 BRD_HEAT_LOWMGN 0
 
-# --- IMU配置（硬件启用部分）---
-INS_ENABLE_MASK 127
-INS_USE         1
-INS_USE2        1
-INS_USE3        1
-INS_FAST_SAMPLE 7
-INS_GYRO_RATE   1
-INS_ACCEL_FILTER 20
-INS_GYRO_FILTER 20
-INS_GYR_CAL     1
-INS_STILL_THRESH 2.5
-INS_TRIM_OPTION 1
-INS_ACC_BODYFIX 2
-
-# IMU位置（相对飞控中心）
-INS_POS1_X      0
-INS_POS1_Y      0
-INS_POS1_Z      0
-INS_POS2_X      0
-INS_POS2_Y      0
-INS_POS2_Z      0
-INS_POS3_X      0
-INS_POS3_Y      0
-INS_POS3_Z      0
-
-# IMU温度校准（禁用）
-INS_TCAL_OPTIONS 0
-INS_TCAL1_ENABLE 0
-INS_TCAL2_ENABLE 0
-INS_TCAL3_ENABLE 0
-
 # IMU日志记录
 INS_LOG_BAT_MASK 3
 INS_LOG_BAT_CNT  1024
@@ -578,16 +354,6 @@ AHRS_WIND_MAX   0
 AHRS_ORIENTATION 0
 AHRS_OPTIONS    0
 
-# AHRS Trim（姿态微调）
-AHRS_TRIM_X     0
-AHRS_TRIM_Y     0
-AHRS_TRIM_Z     0
-
-# --- 主循环调度 ---
-SCHED_LOOP_RATE 400
-SCHED_DEBUG     0
-SCHED_OPTIONS   0
-
 # --- 日志记录 ---
 LOG_BACKEND_TYPE 1
 LOG_FILE_BUFSIZE 200
@@ -607,248 +373,16 @@ LOG_DARM_RATEMAX 0
 FFT_ENABLE      1
 FFT_SAMPLEo_MODE 2
 
-# ============================================================================
-# 第二部分：传感器校准参数
-# ============================================================================
-# SITL仿真时使用模拟传感器数据
-# 真机移植时必须重新校准，不可直接复用
+# --------临时---------
 
-
-
-# ============================================================================
-# 第三部分：EKF融合参数（保留实机优化值）
-# ============================================================================
-# 说明：这些参数通过实机飞行日志分析得出，可作为同型号飞机的基准值
-
-# --- EKF3核心参数 ---
-EK3_ENABLE,1                       # 启用EKF3
-EK3_PRIMARY,0                      # 主EKF索引
-EK3_IMU_MASK,3                     # 使用IMU 1和2
-EK3_CHECK_SCALE,100                # 检查比例
-EK3_ERR_THRESH,0.2                 # 错误阈值
-EK3_AFFINITY,0                     # 亲和性
-EK3_LOG_LEVEL,2                    # 日志等级
-
-# --- 传感器噪声参数（通过飞行日志优化）---
-# 陀螺仪
-EK3_GYRO_P_NSE,0.015               # 陀螺仪过程噪声
-EK3_GBIAS_P_NSE,0.001              # 陀螺仪偏置过程噪声
-
-# 加速度计
-EK3_ACC_P_NSE,0.35                 # 加速度计过程噪声
-EK3_ABIAS_P_NSE,0.02               # 加速度计偏置过程噪声
-EK3_ACC_BIAS_LIM,1                 # 加速度计偏置限制
-
-# 罗盘
-EK3_MAG_M_NSE,0.05                 # 罗盘测量噪声
-EK3_MAG_I_GATE,300                 # 罗盘创新门限
-EK3_MAG_CAL,3                      # 罗盘校准
-EK3_MAGE_P_NSE,0.001               # 罗盘外部过程噪声
-EK3_MAGB_P_NSE,0.0001              # 罗盘偏置过程噪声
-EK3_MAG_EF_LIM,50                  # 罗盘外部场限制
-EK3_MAG_MASK,0                     # 罗盘掩码
-
-# GPS/位置
-EK3_POSNE_M_NSE,0.5                # GPS水平测量噪声
-EK3_POS_I_GATE,500                 # 位置创新门限
-EK3_GLITCH_RAD,25                  # GPS跳变半径
-EK3_GPS_CHECK,31                   # GPS检查
-EK3_GPS_VACC_MAX,0                 # GPS最大垂直精度
-
-# 速度
-EK3_VELNE_M_NSE,0.3                # 水平速度测量噪声
-EK3_VELD_M_NSE,0.5                 # 垂直速度测量噪声
-EK3_VEL_I_GATE,500                 # 速度创新门限
-
-# 高度/气压计
-EK3_ALT_M_NSE,2                    # 高度测量噪声
-EK3_HGT_DELAY,60                   # 高度延迟
-EK3_HGT_I_GATE,500                 # 高度创新门限
-
-# 风速估计
-EK3_WIND_P_NSE,0.2                 # 风速过程噪声
-EK3_WIND_PSCALE,1                  # 风速比例
-
-# Yaw角
-EK3_YAW_M_NSE,0.5                  # Yaw测量噪声
-EK3_YAW_I_GATE,300                 # Yaw创新门限
-
-# --- 传感器融合源配置 ---
-# 源1（主源，GPS）
-EK3_SRC1_POSXY,3                   # 主源水平位置
-EK3_SRC1_POSZ,1                    # 主源垂直位置
-EK3_SRC1_VELXY,3                   # 主源水平速度
-EK3_SRC1_VELZ,3                    # 主源垂直速度
-EK3_SRC1_YAW,1                     # 主源Yaw
-
-# 源2（备份源）
-EK3_SRC2_POSXY,0                   # 备份源水平位置
-EK3_SRC2_POSZ,1                    # 备份源垂直位置
-EK3_SRC2_VELXY,0                   # 备份源水平速度
-EK3_SRC2_VELZ,0                    # 备份源垂直速度
-EK3_SRC2_YAW,0                     # 备份源Yaw
-
-# 源3（第三源）
-EK3_SRC3_POSXY,0                   # 第三源水平位置
-EK3_SRC3_POSZ,1                    # 第三源垂直位置
-EK3_SRC3_VELXY,0                   # 第三源水平速度
-EK3_SRC3_VELZ,0                    # 第三源垂直速度
-EK3_SRC3_YAW,0                     # 第三源Yaw
-
-# 源选项
-EK3_SRC_OPTIONS,1                  # 源选项
-
-# --- 地面效应与拖曳力 ---
-EK3_GND_EFF_DZ,4                   # 地面效应死区
-EK3_DRAG_BCOEF_X,0                 # X轴阻力系数
-EK3_DRAG_BCOEF_Y,0                 # Y轴阻力系数
-EK3_DRAG_M_NSE,0.5                 # 拖曳测量噪声
-EK3_DRAG_MCOEF,0                   # 拖曳系数
-
-# --- 光流参数（当前禁用）---
-EK3_FLOW_USE,1                     # 启用光流
-EK3_FLOW_M_NSE,0.25                # 光流测量噪声
-EK3_FLOW_I_GATE,300                # 光流创新门限
-EK3_FLOW_DELAY,10                  # 光流延迟
-EK3_MAX_FLOW,2.5                   # 最大光流
-
-# --- 测距仪参数（当前禁用）---
-EK3_RNG_USE_HGT,-1                 # 测距仪用作高度
-EK3_RNG_USE_SPD,2                  # 测距仪用作速度
-EK3_RNG_M_NSE,0.5                  # 测距仪测量噪声
-EK3_RNG_I_GATE,500                 # 测距仪创新门限
-EK3_TERR_GRAD,0.1                  # 地形梯度
-
-# --- 信标参数（当前禁用）---
-EK3_BCN_M_NSE,1                    # 信标测量噪声
-EK3_BCN_I_GTE,500                  # 信标创新门限
-EK3_BCN_DELAY,50                   # 信标延迟
-
-# --- 空速参数（多旋翼不使用）---
-EK3_EAS_M_NSE,1.4                  # 空速测量噪声
-EK3_EAS_I_GATE,400                 # 空速创新门限
-
-# --- 视觉里程计参数（当前禁用）---
-EK3_VIS_VERR_MIN,0.1               # 视觉最小速度误差
-EK3_VIS_VERR_MAX,0.9               # 视觉最大速度误差
-
-# --- 轮速计参数（当前禁用）---
-EK3_WENC_VERR,0.1                  # 轮速计速度误差
-
-# --- GSF（高斯和滤波器，Yaw估计）---
-EK3_GSF_RUN_MASK,3                 # GSF运行掩码
-EK3_GSF_USE_MASK,3                 # GSF使用掩码
-EK3_GSF_RST_MAX,2                  # GSF最大重置次数
-
-# --- 其他EKF选项 ---
-EK3_BETA_MASK,0                    # Beta掩码
-EK3_TAU_OUTPUT,25                  # 输出时间常数
-EK3_HRT_FILT,2                     # 高速滤波
-EK3_NOAID_M_NSE,10                 # 无辅助测量噪声
-EK3_OGN_HGT_MASK,0                 # OGN高度掩码
-EK3_OGNM_TEST_SF,2                 # OGN测试比例因子
-
-# ============================================================================
-# 第四部分：飞行控制参数（非PID）
-# ============================================================================
-# 说明：这些参数定义了飞行行为，但不是PID控制器参数
-
-# --- 姿态限制 ---
-ANGLE_MAX,3000                      # 最大姿态角度（0.1度）
-
-# --- 油门行为 ---
-PILOT_THR_BHV,0                     # 油门行为
-PILOT_THR_FILT,0                    # 油门滤波
-THR_DZ,100                          # 油门死区
-
-# --- 速度与加速度限制 ---
-PILOT_SPEED_UP,250                  # 上升速度限制
-PILOT_SPEED_DN,0                    # 下降速度限制
-PILOT_ACCEL_Z,250                   # 垂直加速度限制
-
-# --- Yaw控制参数 ---
-PILOT_Y_RATE,202.5                  # Yaw速率
-PILOT_Y_RATE_TC,0                   # Yaw速率时间常数
-PILOT_Y_EXPO,0                      # Yaw expo
-
-# --- ACRO模式参数 ---
-ACRO_RP_RATE,360                    # 横滚俯仰速率
-ACRO_RP_EXPO,0.3                    # 横滚俯仰expo
-ACRO_Y_RATE,202.5                   # Yaw速率
-ACRO_Y_EXPO,0                       # Yaw expo
-ACRO_RP_RATE_TC,0                   # 横滚俯仰速率时间常数
-ACRO_Y_RATE_TC,0                    # Yaw速率时间常数
-ACRO_THR_MID,0                      # 油门中点
-ACRO_TRAINER,2                      # ACRO训练模式
-ACRO_BAL_ROLL,1                     # 横滚平衡
-ACRO_BAL_PITCH,1                    # 俯仰平衡
-ACRO_OPTIONS,0                      # ACRO选项
-
-# --- 自动航线速度 ---
-WPNAV_SPEED,1000                    # 航点速度
-WPNAV_SPEED_UP,250                  # 上升速度
-WPNAV_SPEED_DN,150                  # 下降速度
-WPNAV_RADIUS,200                    # 航点半径
-WPNAV_ACCEL,250                     # 水平加速度
-WPNAV_ACCEL_C,0                     # 曲线加速度
-WPNAV_ACCEL_Z,100                   # 垂直加速度
-WPNAV_JERK,1                        # 水平jerk
-WPNAV_TER_MARGIN,10                 # 终点边距
-WPNAV_RFND_USE,1                    # 使用RFND
-WP_YAW_BEHAVIOR,2                   # 航点Yaw行为
-WP_NAVALT_MIN,0                     # 最小导航高度
-
-# --- Loiter（定点）模式 ---
-LOIT_SPEED,1250                     # 定点速度
-LOIT_ACC_MAX,500                    # 最大加速度
-LOIT_BRK_ACCEL,250                  # 刹车加速度
-LOIT_BRK_JERK,500                   # 刹车jerk
-LOIT_BRK_DELAY,1                    # 刹车延迟
-LOIT_ANG_MAX,0                      # 最大定点角度
-
-# --- PosHold（位置保持）模式 ---
-PHLD_BRAKE_RATE,8                   # 刹车速率
-PHLD_BRAKE_ANGLE,3000               # 刹车角度
-
-# --- FlowHold（光流保持）模式 ---
-FHLD_FILT_HZ,5                      # 滤波频率
-FHLD_FLOW_MAX,0.6                   # 最大光流
-FHLD_QUAL_MIN,10                    # 最小质量
-FHLD_BRAKE_RATE,8                   # 刹车速率
-FHLD_XY_P,0.2                       # XY比例
-FHLD_XY_I,0.3                       # XY积分
-FHLD_XY_IMAX,3000                   # XY积分最大值
-FHLD_XY_FILT_HZ,5                   # XY滤波频率
-
-# --- 简单模式 ---
-SIMPLE,0                            # 简单模式
-SUPER_SIMPLE,0                      # 超级简单模式
-
-# --- Throw（抛飞）模式 ---
-THROW_TYPE,0                        # 抛飞类型
-THROW_NEXTMODE,18                   # 抛飞后模式
-THROW_MOT_START,0                   # 抛飞电机启动
-THROW_ALT_MIN,0                     # 抛飞最小高度
-THROW_ALT_MAX,0                     # 抛飞最大高度
-
-# --- 地面效应补偿 ---
-GND_EFFECT_COMP,1                   # 地面效应补偿
-
-# --- 自动调参 ---
-AUTOTUNE_AXES,7                     # 自动调参轴
-AUTOTUNE_AGGR,0.1                   # 自动调参激进度
-AUTOTUNE_MIN_D,0.001                # 自动调参最小D
-
-# --- 滤波器（通用数字滤波器，当前未使用）---
-FILT1_TYPE,0                        # 滤波器类型1
-FILT2_TYPE,0                        # 滤波器类型2
-FILT3_TYPE,0                        # 滤波器类型3
-FILT4_TYPE,0                        # 滤波器类型4
-FILT5_TYPE,0                        # 滤波器类型5
-FILT6_TYPE,0                        # 滤波器类型6
-FILT7_TYPE,0                        # 滤波器类型7
-FILT8_TYPE,0                        # 滤波器类型8
-
+# 1. 在驱动层，明确禁用第一个和第二个IMU实例
+INS_USE,0
+INS_USE2,0
+# 2. 在驱动层，明确启用第三个IMU实例
+INS_USE3,1
+# 3. 告诉EKF3，在所有已启用的IMU中，只使用第三个实例
+# (因为现在只有第三个被启用了，所以掩码必须是4)
+EK3_IMU_MASK,4
 
 # ============================================================================
 # 第五部分：PID控制参数（文件末尾，来源于初始值）
@@ -1011,4 +545,4 @@ PSC_ACCZ_NEF,0                     # 高度加速度NEF
 # 5.4 悬停油门学习
 # -----------------------------
 MOT_HOVER_LEARN,2                  # 悬停油门学习
-MOT_THST_HOVER,0.35                # 悬停油门
+MOT_THST_HOVER,0.356                # 悬停油门，当前值为该仿真配置下计算得出
